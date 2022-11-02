@@ -3,11 +3,18 @@ My Family Cookbook provides a secure and easy-to-use application for you to ente
 
 ## Tech Stack
 
+### Hosting
+This project will be hosted on Vercel.
+
 ### Backend
 The backend is and will be handled by supabase to provide all necessary backend functions and data storage. This includes Auth, API, Storage and Database. 
 
 ### Frontend
 The frontend will be utilizing Vue as the framework, built with Vite as the compiler. Pinia will be implemented as a state management tool. The styling frameworks used will as minimal as possible, utilizing Tailwind CSS as the main CSS-helper, and paired with Tailwind UI and Headless UI as a way to maintain minimal overhead and loading time. 
+
+### Code Best-Practices
+- This code uses Prettier to establish consistently formatted code. Format on save should work with this and is recommended. 
+- Pages and Components should be thought of as a 2-tier system: 'How It Looks' and 'How It Works'. To accomplish this, styling should be done with Tailwind CSS until forced otherwise. The Template section should deal with how the code looks/renders in the browser. The Script section should be focused on logic and function of the code in the browser. Style sections should be minimally used unless forced by animation or specific purposes. 
 
 ## Workflow
 1. A unauthenticated user (global user) will be able to see a description and sample recipes to get a feel for the way the front-end interface works. 
