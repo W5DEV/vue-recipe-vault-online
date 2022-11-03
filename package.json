@@ -18,7 +18,8 @@
     "eslint-plugin-tailwindcss": "^3.6.2",
     "pinia": "^2.0.23",
     "vite-svg-loader": "^3.6.0",
-    "vue": "^3.2.41"
+    "vue": "^3.2.41",
+    "vue-router": "^4.0.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.2.0",

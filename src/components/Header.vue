@@ -1,15 +1,14 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <Popover class="bg-primary relative">
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div
         class="flex items-center justify-between py-6 md:justify-start md:space-x-10">
-        <div class="flex justify-start lg:w-0 lg:flex-1">
-          <a href="#">
-            <span class="sr-only">Your Company</span>
+        <div class="flex justify-start">
+          <RouterLink to="/">
+            <span class="sr-only">My Recipe Book</span>
             <!-- Logo -->
             <LogoWhite class="w-auto h-auto" />
-          </a>
+          </RouterLink>
         </div>
         <div class="-my-2 -mr-2 md:hidden">
           <PopoverButton
@@ -19,164 +18,32 @@
           </PopoverButton>
         </div>
         <PopoverGroup as="nav" class="hidden space-x-10 md:flex">
-          <Popover class="relative" v-slot="{ open }">
-            <PopoverButton
-              :class="[
-                open ? 'text-primary-muted' : 'text-primary-white',
-                'group inline-flex items-center rounded-md bg-primary text-base font-medium hover:text-primary-muted focus:outline-none',
-              ]">
-              <span>Solutions</span>
-              <ChevronDownIcon
-                :class="[
-                  open ? 'text-primary-muted' : 'text-primary-white',
-                  'ml-2 h-5 w-5 group-hover:text-primary-muted',
-                ]"
-                aria-hidden="true" />
-            </PopoverButton>
-
-            <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="opacity-0 translate-y-1"
-              enter-to-class="opacity-100 translate-y-0"
-              leave-active-class="transition ease-in duration-150"
-              leave-from-class="opacity-100 translate-y-0"
-              leave-to-class="opacity-0 translate-y-1">
-              <PopoverPanel
-                class="absolute z-10 -ml-4 mt-3 w-screen max-w-md transform px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
-                <div
-                  class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div
-                    class="bg-primary-white relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                    <a
-                      v-for="item in solutions"
-                      :key="item.name"
-                      :href="item.href"
-                      class="hover:bg-primary-light -m-3 flex items-start rounded-lg p-3">
-                      <component
-                        :is="item.icon"
-                        class="text-primary-muted h-6 w-6 flex-shrink-0"
-                        aria-hidden="true" />
-                      <div class="ml-4">
-                        <p class="text-primary-muted text-base font-medium">
-                          {{ item.name }}
-                        </p>
-                        <p class="text-primary mt-1 text-sm">
-                          {{ item.description }}
-                        </p>
-                      </div>
-                    </a>
-                  </div>
-                  <div
-                    class="bg-primary-white space-y-6 p-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-                    <div
-                      v-for="item in callsToAction"
-                      :key="item.name"
-                      class="flow-root">
-                      <a
-                        :href="item.href"
-                        class="text-primary-muted hover:bg-primary-light -m-3 flex items-center rounded-md p-3 text-base font-medium">
-                        <component
-                          :is="item.icon"
-                          class="text-primary-muted h-6 w-6 flex-shrink-0"
-                          aria-hidden="true" />
-                        <span class="ml-3">{{ item.name }}</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </PopoverPanel>
-            </transition>
-          </Popover>
-
-          <a
-            href="#"
+          <RouterLink
+            to="/"
             class="text-primary-white hover:text-primary-muted text-base font-medium"
-            >Pricing</a
+            >Home</RouterLink
           >
-          <a
-            href="#"
+          <RouterLink
+            to="Recipes"
             class="text-primary-white hover:text-primary-muted text-base font-medium"
-            >Docs</a
+            >Recipes</RouterLink
           >
 
-          <Popover class="relative" v-slot="{ open }">
-            <PopoverButton
-              :class="[
-                open ? 'text-primary-muted' : 'text-primary-white',
-                'group inline-flex items-center rounded-md bg-primary text-base font-medium hover:text-primary-muted focus:outline-none',
-              ]">
-              <span>More</span>
-              <ChevronDownIcon
-                :class="[
-                  open ? 'text-primary-muted' : 'text-primary-white',
-                  'ml-2 h-5 w-5 group-hover:text-primary-muted',
-                ]"
-                aria-hidden="true" />
-            </PopoverButton>
-
-            <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="opacity-0 translate-y-1"
-              enter-to-class="opacity-100 translate-y-0"
-              leave-active-class="transition ease-in duration-150"
-              leave-from-class="opacity-100 translate-y-0"
-              leave-to-class="opacity-0 translate-y-1">
-              <PopoverPanel
-                class="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
-                <div
-                  class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                  <div
-                    class="bg-primary-white relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8">
-                    <a
-                      v-for="item in resources"
-                      :key="item.name"
-                      :href="item.href"
-                      class="hover:bg-primary-light -m-3 flex items-start rounded-lg p-3">
-                      <component
-                        :is="item.icon"
-                        class="text-primary-muted h-6 w-6 flex-shrink-0"
-                        aria-hidden="true" />
-                      <div class="ml-4">
-                        <p class="text-primary-muted text-base font-medium">
-                          {{ item.name }}
-                        </p>
-                        <p class="text-primary mt-1 text-sm">
-                          {{ item.description }}
-                        </p>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="bg-primary-white p-5 sm:p-8">
-                    <div>
-                      <h3 class="text-primary-muted text-base font-medium">
-                        Recent Posts
-                      </h3>
-                      <ul role="list" class="mt-4 space-y-4">
-                        <li
-                          v-for="post in recentPosts"
-                          :key="post.id"
-                          class="truncate text-base">
-                          <a
-                            :href="post.href"
-                            class="text-primary-dark hover:text-primary font-medium"
-                            >{{ post.name }}</a
-                          >
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="mt-5 text-sm">
-                      <a
-                        href="#"
-                        class="text-primary hover:text-primary-muted font-medium">
-                        View all posts
-                        <span aria-hidden="true"> &rarr;</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </PopoverPanel>
-            </transition>
-          </Popover>
+          <RouterLink
+            to="About"
+            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            >About</RouterLink
+          >
+          <RouterLink
+            to="Pricing"
+            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            >Pricing</RouterLink
+          >
+          <RouterLink
+            to="Contact"
+            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            >Contact</RouterLink
+          >
         </PopoverGroup>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
           <a
@@ -238,26 +105,6 @@
             </div>
           </div>
           <div class="space-y-6 py-6 px-5">
-            <div class="grid grid-cols-2 gap-y-4 gap-x-8">
-              <a
-                href="#"
-                class="text-primary hover:text-primary-muted text-base font-medium"
-                >Pricing</a
-              >
-
-              <a
-                href="#"
-                class="text-primary hover:text-primary-muted text-base font-medium"
-                >Docs</a
-              >
-              <a
-                v-for="item in resources"
-                :key="item.name"
-                :href="item.href"
-                class="text-primary hover:text-primary-muted text-base font-medium"
-                >{{ item.name }}</a
-              >
-            </div>
             <div>
               <a
                 href="#"
@@ -281,8 +128,8 @@
 </template>
 
 <script setup>
-import LogoWhite from '../assets/logo-white.svg?component';
-import LogoColor from '../assets/logo-color.svg?component';
+import LogoWhite from '../assets/cookbook-white.svg?component';
+import LogoColor from '../assets/cookbook-color.svg?component';
 import {
   Popover,
   PopoverButton,
@@ -290,95 +137,51 @@ import {
   PopoverPanel,
 } from '@headlessui/vue';
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  BookmarkSquareIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  CursorArrowRaysIcon,
-  LifebuoyIcon,
-  PhoneIcon,
-  PlayIcon,
-  ShieldCheckIcon,
-  Squares2X2Icon,
   XMarkIcon,
+  /*  BeakerIcon, */
+  BanknotesIcon,
+  BoltIcon,
+  CakeIcon,
+  /* FireIcon,
+  BellIcon, */
+  ChatBubbleOvalLeftEllipsisIcon,
+  QuestionMarkCircleIcon,
 } from '@heroicons/vue/24/outline';
-import { ChevronDownIcon } from '@heroicons/vue/20/solid';
+import { RouterLink } from 'vue-router';
 
 const solutions = [
   {
-    name: 'Analytics',
+    name: 'Home',
+    description: 'Return to our homepage to learn more!',
+    href: '#',
+    icon: BoltIcon,
+  },
+  {
+    name: 'Recipes',
     description:
-      'Get a better understanding of where your traffic is coming from.',
+      'Browse our extensive database of recipes or search for a specific one!',
     href: '#',
-    icon: ChartBarIcon,
+    icon: CakeIcon,
   },
   {
-    name: 'Engagement',
-    description: 'Speak directly to your customers in a more meaningful way.',
-    href: '#',
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: 'Security',
-    description: "Your customers' data will be safe and secure.",
-    href: '#',
-    icon: ShieldCheckIcon,
-  },
-  {
-    name: 'Integrations',
-    description: "Connect with third-party tools that you're already using.",
-    href: '#',
-    icon: Squares2X2Icon,
-  },
-  {
-    name: 'Automations',
+    name: 'About',
     description:
-      'Build strategic funnels that will drive your customers to convert',
+      'Learn more about our company and the benefits to using our service!',
     href: '#',
-    icon: ArrowPathIcon,
-  },
-];
-const callsToAction = [
-  { name: 'Watch Demo', href: '#', icon: PlayIcon },
-  { name: 'Contact Sales', href: '#', icon: PhoneIcon },
-];
-const resources = [
-  {
-    name: 'Help Center',
-    description:
-      'Get all of your questions answered in our forums or contact support.',
-    href: '#',
-    icon: LifebuoyIcon,
+    icon: QuestionMarkCircleIcon,
   },
   {
-    name: 'Guides',
-    description:
-      'Learn how to maximize our platform to get the most out of it.',
+    name: 'Pricing',
+    description: 'Check out our plans or become a beta tester today!',
     href: '#',
-    icon: BookmarkSquareIcon,
+    icon: BanknotesIcon,
   },
   {
-    name: 'Events',
-    description:
-      'See what meet-ups and other events we might be planning near you.',
+    name: 'Contact',
+    description: 'Drop us a message and let us know what you are thinking!',
     href: '#',
-    icon: CalendarIcon,
+    icon: ChatBubbleOvalLeftEllipsisIcon,
   },
-  {
-    name: 'Security',
-    description: 'Understand how we take your privacy seriously.',
-    href: '#',
-    icon: ShieldCheckIcon,
-  },
-];
-const recentPosts = [
-  { id: 1, name: 'Boost your conversion rate', href: '#' },
-  {
-    id: 2,
-    name: 'How to use search engine optimization to drive traffic to your site',
-    href: '#',
-  },
-  { id: 3, name: 'Improve your customer experience', href: '#' },
 ];
 </script>
