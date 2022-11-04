@@ -26,7 +26,15 @@
     "vue/multi-word-component-names": [
       "error",
       {
-        "ignores": ["Recipes", "Pricing", "Contact", "About", "Header", "Home"]
+        "ignores": [
+          "Recipes",
+          "Pricing",
+          "Contact",
+          "About",
+          "Header",
+          "Home",
+          "Footer"
+        ]
       }
     ]
   }
