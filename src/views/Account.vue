@@ -1,5 +1,5 @@
 <script setup>
-import Account from '../components/Account.vue';
+import Account from '../components/AccountComponent.vue';
 import Auth from '../components/Auth.vue';
 import { onMounted, ref } from 'vue';
 import { supabase } from '../supabase';

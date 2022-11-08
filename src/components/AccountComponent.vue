@@ -1,7 +1,7 @@
 <script setup>
 import { supabase } from '../supabase';
 import { onMounted, ref, toRefs } from 'vue';
-import Avatar from '../components/Avatar.vue';
+import Avatar from './Avatar.vue';
 
 const props = defineProps(['session']);
 const { session } = toRefs(props);
