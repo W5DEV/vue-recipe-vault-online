@@ -10,7 +10,7 @@
             <!-- Logo -->
             <LogoWhite class="w-auto h-auto" />
             <span
-              class="text-primary-white font-fredericka font-bold text-xl lg:text-2xl"
+              class="text-primary-white font-fredericka font-bold text-2xl"
               >{{ siteName.name }}</span
             >
           </RouterLink>
