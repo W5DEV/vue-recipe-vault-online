@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { supabase } from '../supabase';
+import LogoColor from '../assets/cookbook-color.svg?component';
 
 const loading = ref(false);
 const email = ref('');
@@ -27,10 +28,9 @@ const handleLogin = async () => {
   <div
     class="bg-primary-light flex min-h-full flex-col justify-center items-center py-12 px-6 lg:px-8 w-full md:w-1/2 rounded-lg my-28">
     <div class="sm:mx-auto sm:w-full sm:max-w-md w-3/4">
-      <img
-        class="mx-auto h-24 w-auto"
-        src="../assets/cookbook-color.svg"
-        alt="Your Company" />
+      <div class="w-full flex flex-row justify-center items-center">
+        <LogoColor class="w-24 h-auto" />
+      </div>
       <h2
         class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
         Sign in via magic link with your email below
