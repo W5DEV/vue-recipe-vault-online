@@ -13,6 +13,9 @@ module.exports = {
           white: '#FEFFFF',
         },
       },
+      fontFamily: {
+        fredericka: ['Fredericka the Great', 'cursive'],
+      },
     },
   },
   plugins: [

@@ -3,57 +3,51 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6">
       <div
         class="flex items-center justify-between py-6 md:justify-start md:space-x-10">
-        <div class="flex justify-start">
-          <RouterLink to="/">
-            <span class="sr-only">My Recipe Book</span>
+        <div class="flex justify-start mr-8 lg:flex-1">
+          <RouterLink
+            to="/"
+            class="flex flex-col justify-center items-center text-center">
             <!-- Logo -->
             <LogoWhite class="w-auto h-auto" />
+            <span
+              class="text-primary-white font-fredericka font-bold text-xl lg:text-2xl"
+              >{{ siteName.name }}</span
+            >
           </RouterLink>
         </div>
         <div class="-my-2 -mr-2 md:hidden">
           <PopoverButton
             class="bg-primary text-primary-white hover:text-primary-muted inline-flex items-center justify-center rounded-md p-2 focus:outline-none">
             <span class="sr-only">Open menu</span>
-            <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon class="h-8 w-8" aria-hidden="true" />
           </PopoverButton>
         </div>
         <PopoverGroup as="nav" class="hidden space-x-10 md:flex">
           <RouterLink
             to="/"
-            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium"
             >Home</RouterLink
           >
           <RouterLink
             to="Recipes"
-            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium"
             >Recipes</RouterLink
-          >
-
-          <RouterLink
-            to="About"
-            class="text-primary-white hover:text-primary-muted text-base font-medium"
-            >About</RouterLink
           >
           <RouterLink
             to="Pricing"
-            class="text-primary-white hover:text-primary-muted text-base font-medium"
+            class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium"
             >Pricing</RouterLink
-          >
-          <RouterLink
-            to="Contact"
-            class="text-primary-white hover:text-primary-muted text-base font-medium"
-            >Contact</RouterLink
           >
         </PopoverGroup>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
           <a
             href="#"
-            class="text-primary-white hover:text-primary-muted whitespace-nowrap text-base font-medium"
+            class="text-primary-white hover:text-primary-muted whitespace-nowrap text-base lg:text-xl font-medium"
             >Sign in</a
           >
           <a
             href="#"
-            class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base font-medium shadow-sm"
+            class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
             >Sign up</a
           >
         </div>
@@ -69,14 +63,19 @@
       leave-to-class="opacity-0 scale-95">
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
+        class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
         <div
           class="bg-primary-light divide-y-2 divide-gray-50 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
           <div class="px-5 pt-5 pb-6">
             <div class="flex items-center justify-between">
-              <div class="w-full h-full flex justify-center items-center">
+              <div
+                class="w-full h-full flex flex-col justify-center items-center">
                 <!-- Logo -->
                 <LogoColor class="w-auto h-auto" />
+                <span
+                  class="text-primary font-fredericka font-bold text-xl md:text-base lg:text-xl"
+                  >{{ siteName.name }}</span
+                >
               </div>
               <div class="-mr-2">
                 <PopoverButton
@@ -109,7 +108,7 @@
               <a
                 href="#"
                 class="bg-primary text-primary-white hover:bg-primary-muted flex w-full items-center justify-center rounded-md border border-transparent px-4 py-2 text-base font-medium shadow-sm"
-                >Sign up</a
+                >Sign Up</a
               >
               <p
                 class="text-primary-dark mt-6 text-center text-base font-medium">
@@ -149,6 +148,9 @@ import {
   QuestionMarkCircleIcon,
 } from '@heroicons/vue/24/outline';
 import { RouterLink } from 'vue-router';
+import { useSiteStore } from '../stores/base';
+
+const siteName = useSiteStore();
 
 const solutions = [
   {

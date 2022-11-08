@@ -1,7 +1,15 @@
 <script setup>
 import { RouterView } from 'vue-router';
 import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
+import { useSiteStore } from './stores/base.js';
+
+const siteStore = useSiteStore();
+const siteName =
+  document.location.hostname === 'savegrandmas.recipes'
+    ? 'Save Grandmas Recipes'
+    : 'Recipe Vault Online';
+
+siteStore.name = siteName;
 </script>
 
 <template>
@@ -11,7 +19,6 @@ import Footer from './components/Footer.vue';
       <component :is="Component" />
     </transition>
   </RouterView>
-  <Footer />
 </template>
 <!-- Style is necessary for page transition animation. -->
 <style>
