@@ -4,6 +4,7 @@ import Recipes from '../views/Recipes.vue';
 import Pricing from '../views/Pricing.vue';
 import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
+import Account from '../views/Account.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/about',
       name: 'About',
       component: About,
+    },
+    {
+      path: '/account',
+      name: 'Account',
+      component: Account,
     },
   ],
 });

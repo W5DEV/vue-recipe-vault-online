@@ -29,26 +29,28 @@
             >Home</RouterLink
           >
           <RouterLink
-            to="Recipes"
+            to="/recipes"
             class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium"
             >Recipes</RouterLink
           >
           <RouterLink
-            to="Pricing"
+            to="/pricing"
             class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium"
             >Pricing</RouterLink
           >
         </PopoverGroup>
         <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-          <a
-            href="#"
-            class="text-primary-white hover:text-primary-muted whitespace-nowrap text-base lg:text-xl font-medium"
-            >Sign in</a
-          >
-          <a
-            href="#"
+          <RouterLink
+            to="/account"
             class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
-            >Sign up</a
+            v-if="!session"
+            >Sign In</RouterLink
+          >
+          <RouterLink
+            to="/account"
+            class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
+            v-else
+            >Account</RouterLink
           >
         </div>
       </div>
@@ -114,8 +116,10 @@
                 class="text-primary-dark mt-6 text-center text-base font-medium">
                 Existing customer?
                 {{ ' ' }}
-                <a href="#" class="text-primary hover:text-primary-muted"
-                  >Sign in</a
+                <RouterLink
+                  to="sign-in"
+                  class="text-primary hover:text-primary-muted"
+                  >Sign in</RouterLink
                 >
               </p>
             </div>
@@ -149,6 +153,20 @@ import {
 } from '@heroicons/vue/24/outline';
 import { RouterLink } from 'vue-router';
 import { useSiteStore } from '../stores/base';
+import { onMounted, ref } from 'vue';
+import { supabase } from '../supabase';
+
+const session = ref();
+
+onMounted(() => {
+  supabase.auth.getSession().then(({ data }) => {
+    session.value = data.session;
+  });
+
+  supabase.auth.onAuthStateChange((_, _session) => {
+    session.value = _session;
+  });
+});
 
 const siteName = useSiteStore();
 

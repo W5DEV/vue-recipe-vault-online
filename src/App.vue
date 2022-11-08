@@ -2,6 +2,20 @@
 import { RouterView } from 'vue-router';
 import Header from './components/Header.vue';
 import { useSiteStore } from './stores/base.js';
+import { onMounted, ref } from 'vue';
+import { supabase } from './supabase';
+
+const session = ref();
+
+onMounted(() => {
+  supabase.auth.getSession().then(({ data }) => {
+    session.value = data.session;
+  });
+
+  supabase.auth.onAuthStateChange((_, _session) => {
+    session.value = _session;
+  });
+});
 
 const siteStore = useSiteStore();
 const siteName =
@@ -14,9 +28,9 @@ siteStore.name = siteName;
 
 <template>
   <Header />
-  <RouterView v-slot="{ Component }">
+  <RouterView v-slot="{ Component, route }">
     <transition name="scale" mode="out-in">
-      <component :is="Component" />
+      <component :is="Component" :key="route.path" />
     </transition>
   </RouterView>
 </template>

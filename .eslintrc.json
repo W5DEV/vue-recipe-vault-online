@@ -23,19 +23,6 @@
     "tailwindcss/no-arbitrary-value": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/no-contradicting-classname": "error",
-    "vue/multi-word-component-names": [
-      "error",
-      {
-        "ignores": [
-          "Recipes",
-          "Pricing",
-          "Contact",
-          "About",
-          "Header",
-          "Home",
-          "Footer"
-        ]
-      }
-    ]
+    "vue/multi-word-component-names": "off"
   }
 }
