@@ -7,7 +7,7 @@ import Contact from '../views/Contact.vue';
 import Account from '../views/Account.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',

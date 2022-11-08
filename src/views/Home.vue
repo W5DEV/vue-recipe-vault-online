@@ -88,7 +88,6 @@ import { useSiteStore } from '../stores/base';
 const site = useSiteStore();
 
 const siteName = site.name;
-/* import { useSiteStore } from '../store/base';
 
-const siteStore = useSiteStore(); */
+window.document.title = siteName;
 </script>
