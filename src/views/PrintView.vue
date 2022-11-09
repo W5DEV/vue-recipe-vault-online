@@ -11,10 +11,11 @@
         </div>
       </div>
       <div class="pt-4 pr-4 flex flex-row justify-end items-center w-1/2">
-        <PrinterIcon
-          class="text-primary h-10 w-10 m-2 cursor-pointer"
-          @click="printPage()"
-          aria-hidden="true" />
+        <div @click="printPage()">
+          <PrinterIcon
+            class="text-primary h-10 w-10 m-2 cursor-pointer"
+            aria-hidden="true" />
+        </div>
         <RouterLink to="/account">
           <HomeIcon class="text-primary h-10 w-10 m-2" aria-hidden="true" />
         </RouterLink>
@@ -72,7 +73,7 @@ const siteStore = useSiteStore();
 const siteName = siteStore.name;
 const recipe = recipeStore.recipe;
 
-function printPage() {
-  location.window.print();
-}
+const printPage = () => {
+  window.print();
+};
 </script>
