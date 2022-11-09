@@ -27,16 +27,16 @@ The frontend will be utilizing Vue as the framework, built with Vite as the comp
 8. Viewing recipes will also give the ability to print the recipe, and should include a button to generate a printer-friendly version of the recipe without images, optimized for black and white printers, and in a reasonable format for a single sheet of paper. 
 
 ## To-Do (Phase 1)
-1. Install frameworks, create temporary splash page to validate proof of concept and functionality.
-2. Connect Supabase Auth
-3. Create a sign-up splash page that creates a supabase user and emails a confirmation?
-4. Create a login page that redirects to a splashpage upon successful login that returns the username and all relevant data associated with the user. This splashpage should not be accessible to non-logged in users. 
-5. Add global mock data manually, linked with the initial user (this should be a simple, yet real recipe to use later on).
-6. Test API/database calls and ensure data is able to be displayed on a page
-7. Create a few new recipes, which should be private. Ensure a global user cannot see these new recipes, but the appropriate logged-in user can.
-8. Style the front-end for displaying the recipe list. 
-9. Style the front-end for displaying a particular recipe. 
-10. Create a dashboard that lists all linked recipes created by the specific user. 
+1. ~~ Install frameworks, create temporary splash page to validate proof of concept and functionality. ~~
+2. ~~ Connect Supabase Auth ~~
+3. ~~ Create a sign-up splash page that creates a supabase user and emails a confirmation? ~~
+4. ~~ Create a login page that redirects to a splashpage upon successful login that returns the username and all relevant data associated with the user. This splashpage should not be accessible to non-logged in users. ~~ 
+5. ~~ Add global mock data manually, linked with the initial user (this should be a simple, yet real recipe to use later on). ~~ 
+6. ~~ Test API/database calls and ensure data is able to be displayed on a page ~~ 
+7. ~~ Create a few new recipes, which should be private. Ensure a global user cannot see these new recipes, but the appropriate logged-in user can. ~~ 
+8. ~~ Style the front-end for displaying the recipe list. ~~ 
+9. ~~ Style the front-end for displaying a particular recipe. ~~ 
+10. ~~ Create a dashboard that lists all linked recipes created by the specific user. ~~ 
 11. Create a recipe management page that pulls the data for the selected recipe and allows editing
 12. Create a button/splash page to add a new recipe to the database. 
 13. Create the functionality for printing a recipe (strip most styling, remove images, make printer-friendly). 
