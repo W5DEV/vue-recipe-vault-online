@@ -69,6 +69,6 @@ const currentTab = ref('My Recipes');
 const tabs = [
   { name: 'My Recipes' },
   { name: 'My Profile' },
-  /* { name: 'My Subscription',  href: '/subscription' }, */
+  /* { name: 'My Subscription' }, */
 ];
 </script>

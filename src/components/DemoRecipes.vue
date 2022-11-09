@@ -112,11 +112,12 @@
                       v-for="instruction in modalRecipe.instructions"
                       :key="instruction.id">
                       <span
+                        class="flex flex-col justify-center items-start"
                         v-for="(step, index) in instruction.instructions"
                         :key="index">
-                        <ol class="text-sm text-gray-500">
-                          <li>{{ index + 1 + '.' }} {{ step }}</li>
-                        </ol>
+                        <span class="text-lg mt-2 text-gray-500"
+                          >{{ index + 1 + '.' }} {{ step }}</span
+                        >
                       </span>
                     </span>
                   </div>

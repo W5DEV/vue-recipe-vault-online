@@ -135,13 +135,23 @@
             <DialogPanel
               class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full mx-24 p-6">
               <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
-                <button
-                  type="button"
-                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
-                  @click="open = false">
-                  <span class="sr-only">Close</span>
-                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-                </button>
+                <div class="flex justify-end items-center flex-row">
+                  <RouterLink
+                    type="button"
+                    @click="saveRecipe(modalRecipe)"
+                    to="/printview"
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none">
+                    <span class="sr-only">Print</span>
+                    <PrinterIcon class="h-6 w-6" aria-hidden="true" />
+                  </RouterLink>
+                  <button
+                    type="button"
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
+                    @click="open = false">
+                    <span class="sr-only">Close</span>
+                    <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
               <div>
                 <div class="mt-3 text-start sm:mt-5">
@@ -176,11 +186,12 @@
                       v-for="instruction in modalRecipe.instructions"
                       :key="instruction.id">
                       <span
+                        class="flex flex-col justify-center items-start"
                         v-for="(step, index) in instruction.instructions"
                         :key="index">
-                        <ol class="text-sm text-gray-500">
-                          <li>{{ index + 1 + '.' }} {{ step }}</li>
-                        </ol>
+                        <span class="text-lg mt-2 text-gray-500"
+                          >{{ index + 1 + '.' }} {{ step }}</span
+                        >
                       </span>
                     </span>
                   </div>
@@ -205,7 +216,15 @@ import {
   TransitionRoot,
 } from '@headlessui/vue';
 
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+import { XMarkIcon, PrinterIcon } from '@heroicons/vue/24/outline';
+import { RouterLink } from 'vue-router';
+import { useRecipeStore } from '../stores/base';
+
+const recipeStore = useRecipeStore();
+
+const saveRecipe = (recipe) => {
+  recipeStore.recipe = recipe;
+};
 
 const props = defineProps(['session']);
 const { session } = toRefs(props);

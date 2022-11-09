@@ -8,17 +8,8 @@ export const useSiteStore = defineStore('site', {
 });
 
 export const useRecipeStore = defineStore('recipe', {
-  state: () => ({ name: null, ingredients: [], instructions: [] }),
+  state: () => ({ recipe: {} }),
   getters: {
-    getRecipeName: (state) => state.name,
-    getRecipeIngredients: (state) => state.ingredients,
-    getRecipeInstructions: (state) => state.instructions,
-  },
-  actions: {
-    setRecipeName: (state, name) => (state.name = name),
-    setRecipeIngredients: (state, ingredients) =>
-      (state.ingredients = ingredients),
-    setRecipeInstructions: (state, instructions) =>
-      (state.instructions = instructions),
+    getRecipe: (state) => state.recipe,
   },
 });

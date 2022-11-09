@@ -5,6 +5,7 @@ import Pricing from '../views/Pricing.vue';
 import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
 import Account from '../views/MyAccount.vue';
+import PrintView from '../views/PrintView.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -38,6 +39,14 @@ const router = createRouter({
       path: '/account',
       name: 'Account',
       component: Account,
+    },
+    {
+      path: '/printview',
+      name: 'PrintView',
+      component: PrintView,
+      meta: {
+        hideNavbar: true,
+      },
     },
   ],
 });

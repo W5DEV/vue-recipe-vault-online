@@ -13,7 +13,7 @@ siteStore.name = siteName;
 </script>
 
 <template>
-  <Header />
+  <Header v-if="!$route.meta.hideNavbar" />
   <RouterView v-slot="{ Component, route }">
     <transition name="scale" mode="out-in">
       <component :is="Component" :key="route.path" />
