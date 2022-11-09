@@ -4,7 +4,7 @@
     <div class="flex flex-row justify-between items-start w-full mb-8">
       <div class="flex flex-col justify-center items-start w-1/2">
         <div class="flex flex-col justify-center items-center">
-          <img src="../assets/cookbook-color.svg" class="h-14 w-14 m-4" />
+          <LogoColor class="h-14 w-14 m-4" />
           <span class="text-primary font-fredericka font-bold text-2xl">{{
             siteName
           }}</span>
@@ -64,6 +64,7 @@
 import { useRecipeStore, useSiteStore } from '../stores/base';
 import { HomeIcon, PrinterIcon } from '@heroicons/vue/24/outline';
 import { RouterLink } from 'vue-router';
+import LogoColor from '../assets/cookbook-color.svg?component';
 
 const recipeStore = useRecipeStore();
 const siteStore = useSiteStore();
