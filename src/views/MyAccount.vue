@@ -1,49 +1,53 @@
 <template>
   <div>
-    <div class="sm:hidden">
-      <label for="tabs" class="sr-only">Select a tab</label>
-      <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-      <select
-        id="tabs"
-        name="tabs"
-        class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-        <option
-          v-for="tab in tabs"
-          :key="tab.name"
-          :selected="tab.name === currentTab">
-          {{ tab.name }}
-        </option>
-      </select>
-    </div>
-    <div class="hidden sm:block">
-      <div class="border-b border-gray-200">
-        <nav class="-mb-px flex" aria-label="Tabs">
-          <div
+    <div v-if="session">
+      <div class="sm:hidden">
+        <label for="tabs" class="sr-only">Select a tab</label>
+        <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
+        <select
+          id="tabs"
+          name="tabs"
+          class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+          <option
             v-for="tab in tabs"
             :key="tab.name"
-            @click="currentTab = tab.name"
-            :class="[
-              tab.name === currentTab
-                ? 'border-primary text-primary'
-                : 'border-transparent text-gray-500 hover:text-primary hover:border-primary cursor-pointer',
-              'w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm',
-            ]"
-            :aria-current="currentTab === tab.name ? 'page' : undefined">
+            :selected="tab.name === currentTab">
             {{ tab.name }}
-          </div>
-        </nav>
+          </option>
+        </select>
+      </div>
+      <div class="hidden sm:block">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex" aria-label="Tabs">
+            <div
+              v-for="tab in tabs"
+              :key="tab.name"
+              @click="currentTab = tab.name"
+              :class="[
+                tab.name === currentTab
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-gray-500 hover:text-primary hover:border-primary cursor-pointer',
+                'w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm',
+              ]"
+              :aria-current="currentTab === tab.name ? 'page' : undefined">
+              {{ tab.name }}
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div
+        v-if="currentTab === 'My Profile'"
+        class="bg-primary-white flex flex-col flex-1 w-full justify-center items-center">
+        <ProfileComponent :session="session" />
+      </div>
+      <div
+        v-if="currentTab === 'My Recipes'"
+        class="bg-primary-white flex flex-col flex-1 w-full justify-center items-center">
+        <RecipeComponent :session="session" />
       </div>
     </div>
-    <div
-      v-if="currentTab === 'My Profile'"
-      class="bg-primary-white flex flex-col flex-1 w-full justify-center items-center">
-      <ProfileComponent v-if="session" :session="session" />
-      <Auth v-else />
-    </div>
-    <div
-      v-if="currentTab === 'My Recipes'"
-      class="bg-primary-white flex flex-col flex-1 w-full justify-center items-center">
-      <RecipeComponent v-if="session" :session="session" />
+    <div class="w-full flex justify-center items-center" v-else>
+      <Auth />
     </div>
   </div>
 </template>
