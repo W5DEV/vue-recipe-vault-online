@@ -78,7 +78,7 @@ async function signOut() {
 
 <template>
   <div
-    class="bg-primary-light flex min-h-full flex-col md:flex-row justify-center items-center py-12 px-6 lg:px-8 w-full md:w-4/5 rounded-lg my-24">
+    class="bg-primary-light flex min-h-full flex-col md:flex-row justify-center items-center p-8 w-full md:w-4/5 rounded-2xl mt-14">
     <Avatar
       v-model:path="avatar_url"
       @upload="updateProfile"
@@ -88,7 +88,8 @@ async function signOut() {
       <span class="my-4 text-2xl font-bold text-center w-full"
         >Profile Information</span
       >
-      <div class="bg-primary-white py-8 px-4 shadow rounded-lg sm:px-10 w-full">
+      <div
+        class="bg-primary-white py-8 px-4 shadow rounded-2xl sm:px-10 w-full">
         <form class="form-widget" @submit.prevent="updateProfile">
           <div class="mb-6">
             <label class="block text-sm font-medium text-gray-700" for="email"

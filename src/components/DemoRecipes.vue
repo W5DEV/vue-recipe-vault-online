@@ -1,73 +1,9 @@
 <template>
-  <span class="isolate inline-flex rounded-md shadow-sm mt-8">
-    <button
-      @click="toggleName = 'Private Recipes'"
-      type="button"
-      :class="
-        toggleName === 'Private Recipes'
-          ? 'text-primary-muted bg-primary-light relative inline-flex items-center rounded-l-md border border-gray-300 px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none cursor-auto'
-          : 'text-primary-muted hover:bg-primary-light relative inline-flex items-center rounded-l-md border border-gray-300 bg-primary-white px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none'
-      ">
-      Private Recipes
-    </button>
-    <button
-      @click="toggleName = 'Global Recipes'"
-      type="button"
-      :class="
-        toggleName === 'Global Recipes'
-          ? 'text-primary-muted bg-primary-light relative inline-flex items-center rounded-r-md border border-gray-300 px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none cursor-auto'
-          : 'text-primary-muted hover:bg-primary-light relative inline-flex items-center rounded-r-md border border-gray-300 bg-primary-white px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none'
-      ">
-      Global Recipes
-    </button>
-  </span>
   <div
     class="bg-primary-light mt-8 w-4/5 p-8 flex justify-center items-center rounded-2xl">
     <div class="bg-white rounded-2xl w-full">
-      <!-- Begin User Recipe Render -->
-      <div v-if="toggleName === 'Private Recipes'">
-        <div class="overflow-hidden bg-white shadow sm:rounded-2xl">
-          <ul role="list" class="divide-y divide-gray-200">
-            <li v-for="recipe in userRecipes" :key="recipe.id">
-              <a
-                href="#"
-                class="block hover:bg-gray-50"
-                @click="(open = true), (modalRecipe = recipe)">
-                <div class="p-4 sm:px-6">
-                  <div class="flex items-center justify-between">
-                    <p class="text-primary truncate text-sm font-medium">
-                      {{ recipe.title }}
-                    </p>
-                    <div class="ml-2 flex flex-shrink-0">
-                      <p
-                        class="bg-primary-light text-primary-muted inline-flex rounded-full px-2 mx-2 text-xs font-semibold leading-5">
-                        {{ recipe.category }}
-                      </p>
-                      <p
-                        :class="
-                          recipe.global
-                            ? `bg-blue-100 text-blue-800 inline-flex rounded-full px-2 mx-2 text-xs font-semibold leading-5`
-                            : `bg-red-100 text-red-800 inline-flex rounded-full px-2 mx-2 text-xs font-semibold leading-5`
-                        ">
-                        {{ recipe.global ? 'Global' : 'Private' }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="mt-2 sm:flex sm:justify-between">
-                    <div class="sm:flex">
-                      <p class="flex items-center text-sm text-gray-500">
-                        {{ recipe.description }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <!-- End User Recipe Render, Begin Global Recipe Render -->
-      <div v-if="toggleName === 'Global Recipes'">
+      <!-- Begin Global Recipe Render -->
+      <div>
         <div class="overflow-hidden bg-white shadow sm:rounded-2xl">
           <ul role="list" class="divide-y divide-gray-200">
             <li v-for="recipe in globalRecipes" :key="recipe.id">
@@ -196,7 +132,7 @@
 
 <script setup>
 import { supabase } from '../supabase';
-import { onMounted, ref, toRefs } from 'vue';
+import { onMounted, ref } from 'vue';
 import {
   Dialog,
   DialogPanel,
@@ -204,17 +140,11 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue';
-
 import { XMarkIcon } from '@heroicons/vue/24/outline';
 
-const props = defineProps(['session']);
-const { session } = toRefs(props);
-
-const toggleName = ref('Private Recipes');
 const open = ref(false);
 const modalRecipe = ref({});
 const globalRecipes = ref([]);
-const userRecipes = ref([]);
 const loading = ref(true);
 onMounted(() => {
   getRecipes();
@@ -224,7 +154,6 @@ async function getRecipes() {
   try {
     loading.value = true;
 
-    const { user } = session.value;
     let {
       data: recipes,
       error,
@@ -233,14 +162,12 @@ async function getRecipes() {
       .from('recipes')
       .select(
         'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, instructions)'
-      );
+      )
+      .eq('global', true);
 
     if (error && status !== 406) throw error;
     if (recipes) {
-      globalRecipes.value = recipes.filter((recipe) => recipe.global === true);
-      userRecipes.value = recipes.filter(
-        (recipe) => recipe.global === false || recipe.user_id === user.id
-      );
+      globalRecipes.value = recipes;
     }
   } catch (error) {
     alert(error.message);

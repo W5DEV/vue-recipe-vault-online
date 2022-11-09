@@ -4,7 +4,7 @@ import Recipes from '../views/Recipes.vue';
 import Pricing from '../views/Pricing.vue';
 import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
-import Account from '../views/Account.vue';
+import Account from '../views/MyAccount.vue';
 
 const router = createRouter({
   history: createWebHistory(),
