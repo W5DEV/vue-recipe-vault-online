@@ -65,7 +65,7 @@
       leave-to-class="opacity-0 scale-95">
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
+        class="z-50 absolute inset-x-0 top-0 origin-top-right transform p-2 transition lg:hidden px-2 sm:px-0 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2">
         <div
           class="bg-primary-light divide-y-2 divide-gray-50 rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
           <div class="px-5 pt-5 pb-6">
