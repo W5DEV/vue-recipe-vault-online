@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 text-left shadow-xl transition-all w-screen p-6">
+    class="printEl relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 text-left shadow-xl transition-all p-6">
     <div class="flex flex-row justify-between items-start w-full mb-8">
       <div class="flex flex-col justify-center items-start w-1/2">
         <div class="flex flex-col justify-center items-center">
@@ -21,43 +21,41 @@
         </RouterLink>
       </div>
     </div>
-    <div class="text-4xl leading-6 text-gray-900 font-bold">
+    <div class="text-3xl leading-6 text-gray-900 font-bold">
       {{ recipe.title }}
-      <span class="font-normal text-base italic ml-6">
+      <span class="font-normal text-sm italic ml-6">
         Chef: {{ recipe.profiles.username }}</span
       >
     </div>
     <p class="text-base text-gray-500 my-4">Category: {{ recipe.category }}</p>
-    <p class="text-lg text-gray-500">Description: {{ recipe.description }}</p>
-    <div class="mt-8 text-lg">
+    <p class="text-base text-gray-500">Description: {{ recipe.description }}</p>
+    <div class="mt-8 text-base">
       <span class="font-bold">Ingredients:</span>
       <span v-for="ingredient in recipe.ingredients" :key="ingredient.id">
-        <p class="text-lg mt-2 text-gray-500">
+        <p class="text-base mt-2 text-gray-500">
           {{ ingredient.amount }} {{ ingredient.units.name }}
           {{ ingredient.ingredient }}
         </p>
       </span>
     </div>
-    <div class="mt-8 text-lg">
+    <div class="mt-4">
       <span class="font-bold">Instructions:</span>
-      <span v-for="instruction in recipe.instructions" :key="instruction.id">
+      <span
+        class="flex flex-col justify-center items-start"
+        v-for="(instruction, index) in recipe.instructions"
+        :key="instruction.id">
         <span
-          class="flex flex-col justify-center items-start"
-          v-for="(step, index) in instruction.instructions"
-          :key="index">
-          <span class="text-lg mt-2 text-gray-500"
-            >{{ index + 1 + '.' }} {{ step }}</span
-          >
-        </span>
+          class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
+          {{ index + 1 + '. ' }} {{ instruction.step }}</span
+        >
       </span>
     </div>
   </div>
 </template>
 <style>
-@media print {
+@media all {
   .printEl {
-    width: 8.5in;
-    height: 11in;
+    width: 8.5in !important;
   }
 }
 </style>
