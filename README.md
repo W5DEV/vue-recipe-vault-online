@@ -1,5 +1,5 @@
-# My Family Cookbook
-My Family Cookbook provides a secure and easy-to-use application for you to enter and retrieve your favorite and most precious recipes. Best of all? You will have access to these recipes *everywhere*. No more worrying about literal spilled milk ruining that generations-old buscuit recipe!
+# Recipe Vault Online
+Recipe Vault Online provides a secure and easy-to-use application for you to enter and retrieve your favorite and most precious recipes. Best of all? You will have access to these recipes *everywhere*. No more worrying about literal spilled milk ruining that generations-old buscuit recipe!
 
 ## Tech Stack
 
@@ -37,12 +37,12 @@ The frontend will be utilizing Vue as the framework, built with Vite as the comp
 8. ~~Style the front-end for displaying the recipe list.~~ 
 9. ~~Style the front-end for displaying a particular recipe.~~ 
 10. ~~Create a dashboard that lists all linked recipes created by the specific user.~~ 
-11. Create a recipe management page that pulls the data for the selected recipe and allows editing
-12. Create a button/splash page to add a new recipe to the database. 
-13. Create the functionality for printing a recipe (strip most styling, remove images, make printer-friendly). 
+11. ~~Create a recipe management page that pulls the data for the selected recipe and allows editing~~
+12. ~~Create a button/splash page to add a new recipe to the database.~~
+13. ~~Create the functionality for printing a recipe (strip most styling, remove images, make printer-friendly).~~
 14. Create the unit-conversion for large/small batches (selectable via radio or toggle?). This should be some sort of +/- toggle that has a max of probably 12.
 15. Create a feedback button for each page that will take comments and images, as well as contact info and the page id.
-16. Implement private/global recipes. There should be a global tag, and each user should be able to start with a limit of global recipes, and then can be manually adjusted later on to increase or decrease recipes based on trust. 
+16. ~~Implement private/global recipes. There should be a global tag, and each user should be able to start with a limit of global recipes, and then can be manually adjusted later on to increase or decrease recipes based on trust.~~
 17. Invite beta-testing users to be the first to test this initial roll out. I am shooting for 15 initial trusted users, made up of both cooks and technical colleagues.
 
 ### Beta-Test Considerations 
