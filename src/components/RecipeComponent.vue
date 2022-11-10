@@ -171,6 +171,7 @@
                   </button>
                   <RouterLink
                     type="button"
+                    @click="saveRecipe(modalRecipe)"
                     to="/printview"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer">
                     <span class="sr-only">Print</span>
