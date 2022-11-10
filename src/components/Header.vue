@@ -1,15 +1,15 @@
 <template>
   <Popover class="bg-primary relative">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="mx-auto max-w-7xl pr-2 md:px-4 sm:px-6">
       <div class="flex items-center justify-between py-6">
-        <div class="flex justify-start mr-8 lg:flex-1">
+        <div class="flex justify-start md:mr-8 lg:flex-1">
           <RouterLink
             to="/"
             class="flex flex-col justify-center items-center text-center">
             <!-- Logo -->
             <LogoWhite class="w-auto h-auto" />
             <span
-              class="text-primary-white font-fredericka font-bold text-2xl"
+              class="text-primary-white font-fredericka hidden md:flex font-bold text-2xl"
               >{{ siteName.name }}</span
             >
           </RouterLink>
@@ -22,18 +22,18 @@
           >
           <RouterLink
             to="/demo"
-            class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium mx-4"
+            class="text-primary-white hover:text-primary-muted text-base lg:text-xl font-medium md:mx-4"
             >Demo</RouterLink
           >
           <RouterLink
             to="/account"
-            class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
+            class="bg-primary-white text-primary hover:bg-primary-light ml-4 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
             v-if="!session"
             >Sign In</RouterLink
           >
           <RouterLink
             to="/account"
-            class="bg-primary-white text-primary hover:bg-primary-light ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
+            class="bg-primary-white text-primary hover:bg-primary-light ml-4 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent px-4 py-2 text-base lg:text-xl font-medium shadow-sm"
             v-else
             >Account</RouterLink
           >

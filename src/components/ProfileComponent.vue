@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-primary-light flex min-h-full flex-col md:flex-row justify-center items-center p-8 w-full md:w-4/5 rounded-2xl mt-14">
+    class="bg-primary-light flex min-h-full flex-col md:flex-row justify-center items-center p-4 md:p-8 w-full md:w-4/5 rounded-2xl mt-8">
     <Avatar
       v-model:path="avatar_url"
       @upload="updateProfile"

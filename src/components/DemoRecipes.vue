@@ -1,10 +1,10 @@
 <template>
   <div
-    class="bg-primary-light mt-8 w-4/5 p-8 flex justify-center items-center rounded-2xl">
+    class="bg-primary-light mt-8 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
     <div class="bg-white rounded-2xl w-full">
       <!-- Begin Global Recipe Render -->
       <div>
-        <div class="overflow-hidden bg-white shadow sm:rounded-2xl">
+        <div class="overflow-hidden bg-white shadow rounded-2xl">
           <ul role="list" class="divide-y divide-gray-200">
             <li v-for="recipe in globalRecipes" :key="recipe.id">
               <a
@@ -12,17 +12,19 @@
                 class="block hover:bg-gray-50"
                 @click="(open = true), (modalRecipe = recipe)">
                 <div class="p-4 sm:px-6">
-                  <div class="flex items-center justify-between">
-                    <p class="text-primary truncate text-sm font-medium">
+                  <div
+                    class="flex flex-col md:flex-row items-start md:items-center justify-between">
+                    <p
+                      class="text-primary truncate text-sm font-medium mb-2 md:mb-0">
                       {{ recipe.title }}
                     </p>
-                    <div class="ml-2 flex flex-shrink-0">
+                    <div class="md:ml-2 flex flex-shrink-0">
                       <p
-                        class="bg-primary-light text-primary-muted inline-flex rounded-full px-2 mx-2 text-xs font-semibold leading-5">
+                        class="bg-primary-light text-primary-muted inline-flex rounded-full px-2 md:mx-2 text-xs font-semibold leading-5">
                         {{ recipe.category }}
                       </p>
                       <p
-                        class="bg-blue-100 text-blue-800 inline-flex rounded-full px-2 mx-2 text-xs font-semibold leading-5 italic">
+                        class="bg-blue-100 text-blue-800 inline-flex rounded-full px-2 ml-2 md:mx-2 text-xs font-semibold leading-5 italic">
                         {{ recipe.profiles.username }}
                       </p>
                     </div>
@@ -59,7 +61,7 @@
 
       <div class="fixed inset-0 z-10 overflow-y-auto">
         <div
-          class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          class="flex min-h-full items-center justify-center md:p-4 text-center sm:items-center">
           <TransitionChild
             as="template"
             enter="ease-out duration-300"
@@ -69,44 +71,58 @@
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             <DialogPanel
-              class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full mx-24 p-6">
-              <div class="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
-                <button
-                  type="button"
-                  class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
-                  @click="open = false">
-                  <span class="sr-only">Close</span>
-                  <XMarkIcon class="h-6 w-6" aria-hidden="true" />
-                </button>
+              class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full md:mx-24 p-6">
+              <div class="absolute top-0 right-0 pt-4 pr-4 sm:block">
+                <div class="flex justify-end items-center flex-row">
+                  <RouterLink
+                    type="button"
+                    @click="saveRecipe(modalRecipe)"
+                    to="/printview"
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none">
+                    <span class="sr-only">Print</span>
+                    <PrinterIcon class="h-6 w-6 mr-2" />
+                  </RouterLink>
+                  <button
+                    type="button"
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
+                    @click="open = false">
+                    <span class="sr-only">Close</span>
+                    <XMarkIcon class="h-6 w-6" />
+                  </button>
+                </div>
               </div>
               <div>
-                <div class="mt-3 text-start sm:mt-5">
+                <div class="mt-10 text-start md:mt-5">
                   <DialogTitle
                     as="h3"
-                    class="text-3xl leading-6 text-gray-900 font-bold"
+                    class="flex flex-row text-3xl leading-6 text-gray-900 font-bold"
                     >{{ modalRecipe.title }}
-                    <span class="font-normal text-sm italic ml-6">
-                      {{ modalRecipe.profiles.username }}</span
+                    <span
+                      class="hidden md:flex font-normal text-sm italic ml-6">
+                      Chef: {{ modalRecipe.profiles.username }}</span
                     ></DialogTitle
                   >
-                  <p class="text-sm text-gray-500 my-4">
+                  <span class="flex md:hidden font-normal text-sm italic mt-1">
+                    Chef: {{ modalRecipe.profiles.username }}</span
+                  >
+                  <p class="text-sm md:text-base text-gray-500 mt-2">
                     Category: {{ modalRecipe.category }}
                   </p>
-                  <p class="text-sm text-gray-500">
+                  <p class="text-sm md:text-base text-gray-500 mt-2">
                     Description: {{ modalRecipe.description }}
                   </p>
-                  <div class="mt-2">
+                  <div class="mt-4">
                     <span class="font-bold">Ingredients:</span>
                     <span
                       v-for="ingredient in modalRecipe.ingredients"
                       :key="ingredient.id">
-                      <p class="text-sm text-gray-500">
+                      <p class="text-sm md:text-base mt-1 text-gray-500">
                         {{ ingredient.amount }} {{ ingredient.units.name }}
                         {{ ingredient.ingredient }}
                       </p>
                     </span>
                   </div>
-                  <div class="mt-2">
+                  <div class="mt-4">
                     <span class="font-bold">Instructions:</span>
                     <span
                       v-for="instruction in modalRecipe.instructions"
@@ -115,7 +131,7 @@
                         class="flex flex-col justify-center items-start"
                         v-for="(step, index) in instruction.instructions"
                         :key="index">
-                        <span class="text-lg mt-2 text-gray-500"
+                        <span class="text-sm md:text-base mt-1 text-gray-500"
                           >{{ index + 1 + '.' }} {{ step }}</span
                         >
                       </span>
@@ -141,7 +157,16 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+
+import { XMarkIcon, PrinterIcon } from '@heroicons/vue/24/outline';
+import { RouterLink } from 'vue-router';
+import { useRecipeStore } from '../stores/base';
+
+const recipeStore = useRecipeStore();
+
+const saveRecipe = (recipe) => {
+  recipeStore.recipe = recipe;
+};
 
 const open = ref(false);
 const modalRecipe = ref({});
