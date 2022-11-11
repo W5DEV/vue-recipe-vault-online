@@ -75,6 +75,7 @@
                   class="focus:border-primary focus:ring-primary block w-full rounded-md border-gray-300 shadow-sm sm:text-sm">
                   <option>Error/Bug</option>
                   <option>Suggestion/Improvement</option>
+                  <option>Request to Join the Beta</option>
                   <option>Something Else</option>
                 </select>
               </div>
@@ -120,6 +121,7 @@
                     id="contact-me"
                     name="contact-option"
                     type="radio"
+                    value="Yes, Contact Me"
                     class="text-primary focus:ring-primary h-4 w-4 border-gray-300" />
                   <label for="contact-me" class="ml-3">
                     <span class="block text-sm font-medium text-gray-700"
@@ -132,6 +134,7 @@
                     id="do-not-contact"
                     name="contact-option"
                     type="radio"
+                    value="Do Not Contact"
                     class="text-primary focus:ring-primary h-4 w-4 border-gray-300" />
                   <label for="do-not-contact" class="ml-3">
                     <span class="block text-sm font-medium text-gray-700"

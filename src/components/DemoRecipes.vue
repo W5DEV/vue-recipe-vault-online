@@ -11,7 +11,9 @@
     <span
       class="text-primary-dark md: text-base font-normal mb-4 w-full md:w-4/5 px-12">
       Feel free to check out our roadmap by clicking the button below to see
-      existing bugs and planned features.
+      existing bugs and planned features. If you would like to be a beta tester,
+      click the feedback button at the bottom of the page and request to join
+      the beta!
     </span>
     <RouterLink
       to="/roadmap"
@@ -175,6 +177,7 @@
       </div>
     </Dialog>
   </TransitionRoot>
+  <Feedback />
 </template>
 
 <script setup>
@@ -191,6 +194,7 @@ import {
 import { XMarkIcon, PrinterIcon } from '@heroicons/vue/24/outline';
 import { RouterLink } from 'vue-router';
 import { useRecipeStore } from '../stores/base';
+import Feedback from './Feedback.vue';
 
 const recipeStore = useRecipeStore();
 
