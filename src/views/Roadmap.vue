@@ -30,7 +30,7 @@
         </li>
         <li class="my-1">Home page footer doesn't line up on mobile</li>
         <li class="my-1">
-          Feedback area prevents clicking on the bototm of the page
+          Feedback area prevents clicking on the bottom of the page
         </li>
       </ul>
     </div>
