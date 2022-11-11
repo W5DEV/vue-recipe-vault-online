@@ -213,9 +213,17 @@
                   <div class="mt-4">
                     <span class="font-bold">Ingredients:</span>
                     <span
-                      v-for="ingredient in modalRecipe.ingredients"
+                      v-for="ingredient in modalRecipe.ingredients.sort(
+                        (a, b) => (a.id > b.id ? 1 : -1)
+                      )"
                       :key="ingredient.id">
-                      <p class="text-sm md:text-base mt-1 text-gray-500">
+                      <p
+                        v-if="ingredient.units.name === 'unit'"
+                        class="text-sm md:text-base mt-1 text-gray-500">
+                        {{ ingredient.amount }}
+                        {{ ingredient.ingredient }}
+                      </p>
+                      <p v-else class="text-sm md:text-base mt-1 text-gray-500">
                         {{ ingredient.amount }} {{ ingredient.units.name }}
                         {{ ingredient.ingredient }}
                       </p>
