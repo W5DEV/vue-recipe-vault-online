@@ -565,8 +565,8 @@
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <DialogTitle
                     as="h3"
-                    class="text-lg font-medium leading-6 text-gray-900"
-                    >Deactivate account</DialogTitle
+                    class="text-lg font-medium leading-6 text-gray-900 capitalize"
+                    >Delete {{ deleteType }}</DialogTitle
                   >
                   <div class="mt-2">
                     <p class="text-sm text-gray-500">
@@ -861,6 +861,8 @@ async function removeInstruction(id) {
 async function deleteRecipe(id) {
   try {
     loading.value = true;
+    await supabase.from('ingredients').delete().eq('recipe_id', id);
+    await supabase.from('instructions').delete().eq('recipe_id', id);
     let { error } = await supabase.from('recipes').delete().eq('id', id);
     if (error) throw error;
   } catch (error) {
