@@ -164,7 +164,7 @@ export default {
     sendEmail() {
       emailjs
         .sendForm(
-          'service_xikgmiu',
+          'service_gpr40ls',
           'template_7sbsh3t',
           this.$refs.form,
           'mKBdNpWg2NKzi-rpo'

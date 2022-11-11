@@ -78,7 +78,7 @@
                     type="button"
                     @click="saveRecipe(modalRecipe)"
                     to="/printview"
-                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none">
+                    class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer">
                     <span class="sr-only">Print</span>
                     <PrinterIcon class="h-6 w-6 mr-2" />
                   </RouterLink>
@@ -125,16 +125,13 @@
                   <div class="mt-4">
                     <span class="font-bold">Instructions:</span>
                     <span
-                      v-for="instruction in modalRecipe.instructions"
+                      class="flex flex-col justify-center items-start"
+                      v-for="(instruction, index) in modalRecipe.instructions"
                       :key="instruction.id">
                       <span
-                        class="flex flex-col justify-center items-start"
-                        v-for="(step, index) in instruction.instructions"
-                        :key="index">
-                        <span class="text-sm md:text-base mt-1 text-gray-500"
-                          >{{ index + 1 + '.' }} {{ step }}</span
-                        >
-                      </span>
+                        class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
+                        {{ index + 1 + '. ' }} {{ instruction.step }}</span
+                      >
                     </span>
                   </div>
                 </div>
@@ -187,7 +184,7 @@ async function getRecipes() {
     } = await supabase
       .from('recipes')
       .select(
-        'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, instructions)'
+        'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, step)'
       )
       .eq('global', true);
 
