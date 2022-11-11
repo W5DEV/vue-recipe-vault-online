@@ -34,6 +34,7 @@
     <div class="w-full flex justify-center items-center" v-else>
       <Auth />
     </div>
+    <Feedback />
   </div>
 </template>
 <script setup>
@@ -42,6 +43,7 @@ import Auth from '../components/Auth.vue';
 import { onMounted, ref } from 'vue';
 import { supabase } from '../supabase';
 import RecipeComponent from '../components/RecipeComponent.vue';
+import Feedback from '../components/Feedback.vue';
 
 const session = ref();
 
