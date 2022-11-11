@@ -1,6 +1,15 @@
 <template>
+  <div class="flex flex-col justify-center items-center mt-4">
+    <span class="text-primary text-2xl font-bold mb-4">Demo Recipes</span>
+    <span class="text-primary-dark text-lg font-normal mb-4 mx-12 md:mx-28">
+      Below are a collection of recipes that our members have made global for
+      everyone to check out. Click a recipe to view the full recipe. Subscribers
+      have access to add, modify, delete and share recipes among other
+      subscribers as well!
+    </span>
+  </div>
   <div
-    class="bg-primary-light mt-8 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
+    class="bg-primary-light mt-4 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
     <div class="bg-white rounded-2xl w-full">
       <!-- Begin Global Recipe Render -->
       <div>
@@ -184,9 +193,10 @@ async function getRecipes() {
     } = await supabase
       .from('recipes')
       .select(
-        'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, step)'
+        'id, title, description, global, active, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, step)'
       )
-      .eq('global', true);
+      .eq('global', true)
+      .order('title', { ascending: true });
 
     if (error && status !== 406) throw error;
     if (recipes) {
