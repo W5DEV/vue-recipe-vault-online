@@ -8,6 +8,16 @@
       have access to add, modify, delete and share recipes among other
       subscribers as well!
     </span>
+    <span
+      class="text-primary-dark md: text-base font-normal mb-4 w-full md:w-4/5 px-12">
+      Feel free to check out our roadmap by clicking the button below to see
+      existing bugs and planned features.
+    </span>
+    <RouterLink
+      to="/roadmap"
+      class="text-primary-white bg-primary font-bold hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg">
+      <span>Roadmap</span>
+    </RouterLink>
   </div>
   <div
     class="bg-primary-light mt-4 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
