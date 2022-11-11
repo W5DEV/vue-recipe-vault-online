@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import Demo from '../views/Demo.vue';
 import Account from '../views/MyAccount.vue';
 import PrintView from '../views/PrintView.vue';
+import Roadmap from '../views/Roadmap.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -29,6 +30,11 @@ const router = createRouter({
       meta: {
         hideNavbar: true,
       },
+    },
+    {
+      path: '/roadmap',
+      name: 'Roadmap',
+      component: Roadmap,
     },
   ],
 });

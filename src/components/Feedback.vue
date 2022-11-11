@@ -24,7 +24,12 @@
         <div
           v-if="successContent"
           class="bg-primary-white text-primary w-full p-8 rounded-t-lg text-center font-bold text-lg">
-          Thanks for reaching out! We will review your submission shortly!
+          Thanks for reaching out! We will review your submission shortly! Check
+          out our
+          <RouterLink to="/roadmap" class="text-primary font-bold underline"
+            >ROADMAP</RouterLink
+          >
+          to see where we are with current bugs and features.
         </div>
         <div
           v-else
@@ -158,6 +163,7 @@ const successContent = ref(false);
 </script>
 <script>
 import emailjs from '@emailjs/browser';
+import { RouterLink } from 'vue-router';
 
 export default {
   methods: {
@@ -179,5 +185,6 @@ export default {
         );
     },
   },
+  components: { RouterLink },
 };
 </script>

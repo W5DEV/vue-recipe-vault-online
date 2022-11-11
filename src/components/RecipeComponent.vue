@@ -21,7 +21,12 @@
       Global Recipes
     </button>
   </span>
-  <div class="w-3/4 flex flex-row justify-end items-center">
+  <div class="w-3/4 flex flex-row justify-between items-center">
+    <RouterLink
+      to="/roadmap"
+      class="text-primary-white bg-primary hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg">
+      <span>Roadmap</span>
+    </RouterLink>
     <button
       class="text-primary-white bg-primary hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg"
       type="button"
