@@ -40,10 +40,22 @@ The frontend will be utilizing Vue as the framework, built with Vite as the comp
 11. ~~Create a recipe management page that pulls the data for the selected recipe and allows editing~~
 12. ~~Create a button/splash page to add a new recipe to the database.~~
 13. ~~Create the functionality for printing a recipe (strip most styling, remove images, make printer-friendly).~~
-14. Create the unit-conversion for large/small batches (selectable via radio or toggle?). This should be some sort of +/- toggle that has a max of probably 12.
-15. Create a feedback button for each page that will take comments and images, as well as contact info and the page id.
+14. **PUSHED TO ICE BOX** Unit Conversion
+15. ~~Create a feedback button for each page that will take comments and images, as well as contact info and the page id.~~
 16. ~~Implement private/global recipes. There should be a global tag, and each user should be able to start with a limit of global recipes, and then can be manually adjusted later on to increase or decrease recipes based on trust.~~
-17. Invite beta-testing users to be the first to test this initial roll out. I am shooting for 15 initial trusted users, made up of both cooks and technical colleagues.
+17. ~~Invite beta-testing users to be the first to test this initial roll out. I am shooting for 15 initial trusted users, made up of both cooks and technical colleagues.~~
+
+## To-Do (Phase 2)
+1. Create a tab under account that explains the roadmap for features that are scheduled to be implemented. (Push to demo page as well?)
+2. Create more global recipes and rework the demo page to be more useful and less of a placeholder.
+3. Create a 'share' button that will allow a user to enter an email (or username?) and add a flag to the recipe that includes the identifier so the other user can view the recipe.
+4. Create a shared recipes tab under account that shows all recipes that contain said flag.
+5. Create a 'favorites' tab under account that shows all recipes that have been favorited by the user.
+6. Create a 'shopping list' tab under account that shows all ingredients from all recipes that have been added to the shopping list by the user.
+
+## Ice-Box
+1. Create the unit-conversion for large/small batches (selectable via radio or toggle?). This should be some sort of +/- toggle that has a max of probably 12.
+2. Rework home page layout/content, possibly after consultingw with someone about copy.
 
 ### Beta-Test Considerations 
 1. User Groups for Cooks and Technical Testers?
