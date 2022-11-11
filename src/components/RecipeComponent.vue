@@ -44,7 +44,8 @@
                   (open = true),
                     (modalRecipe = recipe),
                     saveRecipe(modalRecipe),
-                    (globalRecipe = false)
+                    (globalRecipe = false),
+                    (recipeGlobal = recipe.global)
                 ">
                 <div class="p-4 sm:px-6">
                   <div
@@ -94,6 +95,9 @@
                     (modalRecipe = recipe),
                     (modalRecipe.ingredients = modalRecipe.ingredients.sort(
                       (a, b) => (a.ingredient > b.ingredient ? 1 : -1)
+                    )),
+                    (modalRecipe.step = modalRecipe.step.sort((a, b) =>
+                      a.id > b.id ? 1 : -1
                     ))
                 ">
                 <div class="p-4 sm:px-6">
@@ -175,19 +179,19 @@
                     to="/printview"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer">
                     <span class="sr-only">Print</span>
-                    <PrinterIcon class="h-6 w-6 mr-2" />
+                    <PrinterIcon class="h-6 w-6 mx-2" />
                   </RouterLink>
                   <button
                     type="button"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
                     @click="open = false">
                     <span class="sr-only">Close</span>
-                    <XMarkIcon class="h-6 w-6" />
+                    <XMarkIcon class="h-6 w-6 mx-2" />
                   </button>
                 </div>
               </div>
               <div>
-                <div class="mt-10 text-start md:mt-5">
+                <div class="mt-16 text-start">
                   <DialogTitle
                     as="h3"
                     class="flex flex-row text-3xl leading-6 text-gray-900 font-bold"
@@ -221,11 +225,16 @@
                     <span class="font-bold">Instructions:</span>
                     <span
                       class="flex flex-col justify-center items-start"
-                      v-for="(instruction, index) in modalRecipe.instructions"
+                      v-for="(
+                        instruction, index
+                      ) in modalRecipe.instructions.sort((a, b) =>
+                        a.id > b.id ? 1 : -1
+                      )"
                       :key="instruction.id">
                       <span
                         class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
-                        {{ index + 1 + '. ' }} {{ instruction.step }}</span
+                        {{ index + 1 + '. ' }}
+                        {{ instruction.step }}</span
                       >
                     </span>
                   </div>
@@ -264,20 +273,29 @@
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
             <DialogPanel
-              class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full md:mx-24 p-6">
+              class="relative flex flex-col transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full md:mx-24 p-6">
               <div class="absolute top-0 right-0 pt-4 pr-4 sm:block">
                 <div class="flex justify-end items-center flex-row">
-                  <TrashIcon
-                    v-if="!globalRecipe"
-                    class="text-red-500 mx-4 text-lg rounded-lg w-10 h-10 cursor-pointer"
-                    type="button"
-                    @click="(deleteModal = true), (deleteType = 'recipe')" />
+                  <Switch
+                    v-model="recipeGlobal"
+                    :class="recipeGlobal ? 'bg-primary' : 'bg-gray-200'"
+                    class="relative inline-flex mx-4 h-6 w-11 items-center rounded-full">
+                    <span class="sr-only">Make Global</span>
+                    <span
+                      :class="recipeGlobal ? 'translate-x-6' : 'translate-x-1'"
+                      class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
+                  </Switch>
                   <button
                     class="text-primary-white bg-primary mx-4 py-2 text-lg px-4 rounded-lg"
                     type="button"
                     @click="updateRecipe(), (update = false)">
                     Save
                   </button>
+                  <TrashIcon
+                    v-if="!globalRecipe"
+                    class="text-red-500 mx-4 text-lg rounded-lg w-10 h-10 cursor-pointer"
+                    type="button"
+                    @click="(deleteModal = true), (deleteType = 'recipe')" />
                   <button
                     type="button"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
@@ -288,7 +306,7 @@
                 </div>
               </div>
               <div>
-                <div class="mt-10 text-start md:mt-5">
+                <div class="mt-16 text-start">
                   <label
                     class="flex font-normal text-sm italic mt-1"
                     for="modalRecipe.title">
@@ -629,6 +647,7 @@ import {
   DialogTitle,
   TransitionChild,
   TransitionRoot,
+  Switch,
 } from '@headlessui/vue';
 
 import {
@@ -656,6 +675,7 @@ const update = ref(false);
 const deleteModal = ref(false);
 const deleteType = ref('');
 const newRecipeModal = ref(false);
+const recipeGlobal = ref(false);
 const deleteIngredientId = ref('');
 const deleteInstructionId = ref('');
 const modalRecipe = ref({});
@@ -716,8 +736,7 @@ async function getRecipes() {
       .from('recipes')
       .select(
         'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, unit_id, units(name, abbreviation, id)), instructions(id, step)'
-      )
-      .order('title', { ascending: true });
+      );
     let { data: units } = await supabase.from('units').select('name, id');
 
     if (error && status !== 406) throw error;
@@ -745,7 +764,7 @@ async function updateRecipe() {
       id: modalRecipe.value.id,
       title: modalRecipe.value.title,
       active: modalRecipe.value.active,
-      global: modalRecipe.value.global,
+      global: recipeGlobal.value,
       description: modalRecipe.value.description,
       category: modalRecipe.value.category,
       user_id: modalRecipe.value.user_id,

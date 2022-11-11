@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col justify-center items-center mt-4">
     <span class="text-primary text-2xl font-bold mb-4">Demo Recipes</span>
-    <span class="text-primary-dark text-lg font-normal mb-4 mx-12 md:mx-28">
+    <span
+      class="text-primary-dark md: text-lg font-normal mb-4 w-full md:w-4/5 px-12">
       Below are a collection of recipes that our members have made global for
       everyone to check out. Click a recipe to view the full recipe. Subscribers
       have access to add, modify, delete and share recipes among other
@@ -135,11 +136,16 @@
                     <span class="font-bold">Instructions:</span>
                     <span
                       class="flex flex-col justify-center items-start"
-                      v-for="(instruction, index) in modalRecipe.instructions"
+                      v-for="(
+                        instruction, index
+                      ) in modalRecipe.instructions.sort((a, b) =>
+                        a.id > b.id ? 1 : -1
+                      )"
                       :key="instruction.id">
                       <span
                         class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
-                        {{ index + 1 + '. ' }} {{ instruction.step }}</span
+                        {{ index + 1 + '. ' }}
+                        {{ instruction.step }}</span
                       >
                     </span>
                   </div>
