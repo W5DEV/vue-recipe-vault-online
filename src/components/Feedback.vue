@@ -98,8 +98,8 @@
               <label
                 for="suggestion"
                 class="block text-sm font-medium text-gray-700"
-                >Please any changes that might help make your experience
-                better:</label
+                >Please describe any changes that might help make your
+                experience better:</label
               >
               <div class="mt-1">
                 <textarea
