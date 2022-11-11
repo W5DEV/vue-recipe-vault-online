@@ -749,7 +749,8 @@ async function getRecipes() {
       .from('recipes')
       .select(
         'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, unit_id, units(name, abbreviation, id)), instructions(id, step)'
-      );
+      )
+      .order('title', { ascending: true });
     let { data: units } = await supabase.from('units').select('name, id');
 
     if (error && status !== 406) throw error;
