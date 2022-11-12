@@ -719,7 +719,6 @@ const deleteInstructionId = ref('');
 const modalRecipe = ref({});
 const globalRecipes = ref([]);
 const userRecipes = ref([]);
-const unitsOfMeasure = ref([]);
 const loading = ref(true);
 onMounted(() => {
   getRecipes();
@@ -773,12 +772,9 @@ async function getRecipes() {
         'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount), instructions(id, heading, description)'
       )
       .order('title', { ascending: true });
-    let { data: units } = await supabase.from('units').select('name, id');
 
     if (error && status !== 406) throw error;
-    if (units) {
-      unitsOfMeasure.value = units.filter((unit) => unit);
-    }
+
     if (recipes) {
       globalRecipes.value = recipes.filter((recipe) => recipe.global === true);
       userRecipes.value = recipes.filter(

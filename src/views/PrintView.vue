@@ -16,7 +16,7 @@
             class="text-primary h-10 w-10 m-2 cursor-pointer"
             aria-hidden="true" />
         </div>
-        <RouterLink to="/account">
+        <RouterLink to="/dashboard">
           <HomeIcon class="text-primary h-10 w-10 m-2" aria-hidden="true" />
         </RouterLink>
       </div>

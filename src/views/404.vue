@@ -25,9 +25,9 @@
               >Go back home</a
             >
             <a
-              href="/account"
+              href="/dashboard"
               class="inline-flex items-center rounded-md border border-transparent px-4 py-2 text-lg font-medium text-cyan-200 hover:text-gray-300"
-              >View your account</a
+              >View your dashboard</a
             >
           </div>
         </div>

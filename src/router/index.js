@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Demo from '../views/Demo.vue';
-import Account from '../views/MyAccount.vue';
+import SignIn from '../views/SignIn.vue';
 import PrintView from '../views/PrintView.vue';
 import Roadmap from '../views/Roadmap.vue';
 import NotFound from '../views/404.vue';
+import Dashboard from '../views/Dashboard.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,9 +21,9 @@ const router = createRouter({
       component: Demo,
     },
     {
-      path: '/account',
-      name: 'Account',
-      component: Account,
+      path: '/sign-in',
+      name: 'SignIn',
+      component: SignIn,
     },
     {
       path: '/printview',
@@ -45,6 +46,14 @@ const router = createRouter({
     {
       path: '/:catchAll(.*)',
       redirect: '404',
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      meta: {
+        hideNavbar: true,
+      },
     },
   ],
 });
