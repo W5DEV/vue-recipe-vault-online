@@ -4,6 +4,7 @@ import Demo from '../views/Demo.vue';
 import Account from '../views/MyAccount.vue';
 import PrintView from '../views/PrintView.vue';
 import Roadmap from '../views/Roadmap.vue';
+import NotFound from '../views/404.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -35,6 +36,15 @@ const router = createRouter({
       path: '/roadmap',
       name: 'Roadmap',
       component: Roadmap,
+    },
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: NotFound,
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '404',
     },
   ],
 });
