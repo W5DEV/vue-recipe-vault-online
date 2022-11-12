@@ -1,10 +1,10 @@
 <template>
-  <div class="w-screen">
+  <div class="w-screen hidden md:flex">
     <div
       :class="
         !openFeedback
-          ? `z-50 flex flex-col justify-end items-end absolute bottom-0 right-5 md:left-10 h-8 md:h-9 text-sm md:text-base md:hover:h-10`
-          : `z-50 flex flex-col justify-end items-end absolute bottom-0 right-5 md:left-10 h-auto text-sm md:text-base rounded-t-2xl`
+          ? `z-10 flex flex-col justify-end items-end fixed bottom-0 right-5 md:left-10 h-8 md:h-9 text-sm md:text-base md:hover:h-10`
+          : `z-10 flex flex-col justify-end items-end fixed bottom-0 right-5 md:left-10 h-auto text-sm md:text-base rounded-t-2xl`
       ">
       <div
         :class="
@@ -23,11 +23,13 @@
         ">
         <div
           v-if="successContent"
-          class="bg-primary-white text-primary w-full p-8 rounded-t-lg text-center font-bold text-lg">
+          class="bg-primary-white text-primary w-full p-8 rounded-t-lg text-center text-lg">
           Thanks for reaching out! We will review your submission shortly! Check
           out our
-          <RouterLink to="/roadmap" class="text-primary font-bold underline"
-            >ROADMAP</RouterLink
+          <RouterLink
+            to="/roadmap"
+            class="text-primary italic font-bold hover:underline"
+            >roadmap</RouterLink
           >
           to see where we are with current bugs and features.
         </div>

@@ -9,7 +9,7 @@
       subscribers as well!
     </span>
     <span
-      class="text-primary-dark md: text-base font-normal mb-4 w-full md:w-4/5 px-12">
+      class="text-gray-700 text-base font-normal mb-4 w-full md:w-4/5 px-12 hidden md:flex italic">
       Feel free to check out our roadmap by clicking the button below to see
       existing bugs and planned features. If you would like to be a beta tester,
       click the feedback button at the bottom of the page and request to join
@@ -17,12 +17,12 @@
     </span>
     <RouterLink
       to="/roadmap"
-      class="text-primary-white bg-primary font-bold hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg">
+      class="text-primary-white bg-primary font-bold mx-4 py-2 text-lg px-4 rounded-lg hidden md:flex">
       <span>Roadmap</span>
     </RouterLink>
   </div>
   <div
-    class="bg-primary-light mt-4 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
+    class="bg-primary-light my-8 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
     <div class="bg-white rounded-2xl w-full">
       <!-- Begin Global Recipe Render -->
       <div>
@@ -67,6 +67,7 @@
       <!-- End Global Recipe Render -->
     </div>
   </div>
+  <!-- View Recipe Modal -->
   <TransitionRoot as="template" :show="open">
     <Dialog as="div" class="relative z-10" @close="open = false">
       <TransitionChild
@@ -102,19 +103,19 @@
                     to="/printview"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none cursor-pointer">
                     <span class="sr-only">Print</span>
-                    <PrinterIcon class="h-6 w-6 mr-2" />
+                    <PrinterIcon class="h-6 w-6 mx-2" />
                   </RouterLink>
                   <button
                     type="button"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
                     @click="open = false">
                     <span class="sr-only">Close</span>
-                    <XMarkIcon class="h-6 w-6" />
+                    <XMarkIcon class="h-6 w-6 mx-2" />
                   </button>
                 </div>
               </div>
               <div>
-                <div class="mt-10 text-start md:mt-5">
+                <div class="mt-16 text-start">
                   <DialogTitle
                     as="h3"
                     class="flex flex-row text-3xl leading-6 text-gray-900 font-bold"
@@ -133,39 +134,40 @@
                   <p class="text-sm md:text-base text-gray-500 mt-2">
                     Description: {{ modalRecipe.description }}
                   </p>
-                  <div class="mt-4">
-                    <span class="font-bold">Ingredients:</span>
+                  <div class="mt-8">
+                    <span class="font-bold text-2xl">Ingredients:</span>
                     <span
                       v-for="ingredient in modalRecipe.ingredients.sort(
                         (a, b) => (a.id > b.id ? 1 : -1)
                       )"
                       :key="ingredient.id">
                       <p
-                        v-if="ingredient.units.name === 'unit'"
-                        class="text-sm md:text-base mt-1 text-gray-500">
+                        :class="
+                          ingredient.amount === (null || '')
+                            ? `pl-1 font-semibold italic mt-8 text-gray-500 text-sm md:text-base`
+                            : `text-sm md:text-base mt-1 text-gray-500`
+                        ">
                         {{ ingredient.amount }}
-                        {{ ingredient.ingredient }}
-                      </p>
-                      <p v-else class="text-sm md:text-base mt-1 text-gray-500">
-                        {{ ingredient.amount }} {{ ingredient.units.name }}
                         {{ ingredient.ingredient }}
                       </p>
                     </span>
                   </div>
-                  <div class="mt-4">
-                    <span class="font-bold">Instructions:</span>
+                  <div class="my-8">
+                    <span class="font-bold text-2xl">Instructions:</span>
                     <span
                       class="flex flex-col justify-center items-start"
-                      v-for="(
-                        instruction, index
-                      ) in modalRecipe.instructions.sort((a, b) =>
-                        a.id > b.id ? 1 : -1
+                      v-for="instruction in modalRecipe.instructions.sort(
+                        (a, b) => (a.id > b.id ? 1 : -1)
                       )"
                       :key="instruction.id">
                       <span
+                        v-if="instruction.heading"
+                        class="text-base md:text-base font-bold mt-4 w-4/5 overflow-hidden text-gray-500">
+                        {{ instruction.heading }}</span
+                      >
+                      <span
                         class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
-                        {{ index + 1 + '. ' }}
-                        {{ instruction.step }}</span
+                        {{ instruction.description }}</span
                       >
                     </span>
                   </div>
@@ -221,7 +223,7 @@ async function getRecipes() {
     } = await supabase
       .from('recipes')
       .select(
-        'id, title, description, global, active, category, profiles(username), ingredients(id, ingredient, amount, units(name)), instructions(id, step)'
+        'id, title, description, global, active, category, profiles(username), ingredients(id, ingredient, amount), instructions(id, heading, description)'
       )
       .eq('global', true)
       .order('title', { ascending: true });

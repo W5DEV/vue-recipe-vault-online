@@ -29,24 +29,35 @@
     </div>
     <p class="text-base text-gray-500 my-4">Category: {{ recipe.category }}</p>
     <p class="text-base text-gray-500">Description: {{ recipe.description }}</p>
-    <div class="mt-8 text-base">
-      <span class="font-bold">Ingredients:</span>
-      <span v-for="ingredient in recipe.ingredients" :key="ingredient.id">
-        <p class="text-base mt-2 text-gray-500">
-          {{ ingredient.amount }} {{ ingredient.units.name }}
+    <div class="mt-8">
+      <span class="font-bold text-2xl">Ingredients:</span>
+      <span
+        v-for="ingredient in recipe.ingredients.sort((a, b) =>
+          a.id > b.id ? 1 : -1
+        )"
+        :key="ingredient.id">
+        <p class="text-sm md:text-base mt-1 text-gray-500">
+          {{ ingredient.amount }}
           {{ ingredient.ingredient }}
         </p>
       </span>
     </div>
-    <div class="mt-4">
-      <span class="font-bold">Instructions:</span>
+    <div class="my-8">
+      <span class="font-bold text-2xl">Instructions:</span>
       <span
         class="flex flex-col justify-center items-start"
-        v-for="(instruction, index) in recipe.instructions"
+        v-for="instruction in recipe.instructions.sort((a, b) =>
+          a.id > b.id ? 1 : -1
+        )"
         :key="instruction.id">
         <span
+          v-if="instruction.heading"
+          class="text-base md:text-base font-bold mt-4 w-4/5 overflow-hidden text-gray-500">
+          {{ instruction.heading }}</span
+        >
+        <span
           class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
-          {{ index + 1 + '. ' }} {{ instruction.step }}</span
+          {{ instruction.description }}</span
         >
       </span>
     </div>

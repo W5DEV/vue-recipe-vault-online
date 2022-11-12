@@ -21,12 +21,7 @@
       Global Recipes
     </button>
   </span>
-  <div class="w-3/4 flex flex-row justify-between items-center">
-    <RouterLink
-      to="/roadmap"
-      class="text-primary-white bg-primary hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg">
-      <span>Roadmap</span>
-    </RouterLink>
+  <div class="w-3/4 flex flex-row justify-end items-center mt-4">
     <button
       class="text-primary-white bg-primary hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg"
       type="button"
@@ -100,9 +95,6 @@
                     (modalRecipe = recipe),
                     (modalRecipe.ingredients = modalRecipe.ingredients.sort(
                       (a, b) => (a.ingredient > b.ingredient ? 1 : -1)
-                    )),
-                    (modalRecipe.step = modalRecipe.step.sort((a, b) =>
-                      a.id > b.id ? 1 : -1
                     ))
                 ">
                 <div class="p-4 sm:px-6">
@@ -212,42 +204,43 @@
                   <p class="text-sm md:text-base text-gray-500 mt-2">
                     Category: {{ modalRecipe.category }}
                   </p>
-                  <p class="text-sm md:text-base text-gray-500 mt-2">
+                  <p class="text-sm md:text-base text-gray-500 mt-4 w-3/5">
                     Description: {{ modalRecipe.description }}
                   </p>
-                  <div class="mt-4">
-                    <span class="font-bold">Ingredients:</span>
+                  <div class="mt-8">
+                    <span class="font-bold text-2xl">Ingredients:</span>
                     <span
                       v-for="ingredient in modalRecipe.ingredients.sort(
                         (a, b) => (a.id > b.id ? 1 : -1)
                       )"
                       :key="ingredient.id">
                       <p
-                        v-if="ingredient.units.name === 'unit'"
-                        class="text-sm md:text-base mt-1 text-gray-500">
+                        :class="
+                          ingredient.amount === (null || '')
+                            ? `pl-1 font-semibold italic mt-8 text-gray-500 text-sm md:text-base`
+                            : `text-sm md:text-base mt-1 text-gray-500`
+                        ">
                         {{ ingredient.amount }}
-                        {{ ingredient.ingredient }}
-                      </p>
-                      <p v-else class="text-sm md:text-base mt-1 text-gray-500">
-                        {{ ingredient.amount }} {{ ingredient.units.name }}
                         {{ ingredient.ingredient }}
                       </p>
                     </span>
                   </div>
-                  <div class="mt-4">
-                    <span class="font-bold">Instructions:</span>
+                  <div class="my-8">
+                    <span class="font-bold text-2xl">Instructions:</span>
                     <span
                       class="flex flex-col justify-center items-start"
-                      v-for="(
-                        instruction, index
-                      ) in modalRecipe.instructions.sort((a, b) =>
-                        a.id > b.id ? 1 : -1
+                      v-for="instruction in modalRecipe.instructions.sort(
+                        (a, b) => (a.id > b.id ? 1 : -1)
                       )"
                       :key="instruction.id">
                       <span
+                        v-if="instruction.heading"
+                        class="text-base md:text-base font-bold mt-4 w-4/5 overflow-hidden text-gray-500">
+                        {{ instruction.heading }}</span
+                      >
+                      <span
                         class="text-sm md:text-base my-2 w-4/5 overflow-hidden text-gray-500">
-                        {{ index + 1 + '. ' }}
-                        {{ instruction.step }}</span
+                        {{ instruction.description }}</span
                       >
                     </span>
                   </div>
@@ -318,8 +311,8 @@
                   </button>
                 </div>
               </div>
-              <div>
-                <div class="mt-16 text-start">
+              <div class="w-4/5">
+                <div class="mt-16 text-start w-full">
                   <label
                     class="flex font-normal text-sm italic mt-1"
                     for="modalRecipe.title">
@@ -333,13 +326,13 @@
                   <label
                     class="flex font-normal text-sm italic mt-1"
                     for="modalRecipe.profiles.username">
-                    Chef:
+                    Description:
                   </label>
-                  <input
+                  <textarea
                     class="my-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     id="modalRecipe.profiles.username"
                     type="text"
-                    v-model="modalRecipe.profiles.username" />
+                    v-model="modalRecipe.description" />
                   <label
                     class="flex font-normal text-sm italic mt-1"
                     for="modalRecipe.category">
@@ -350,37 +343,23 @@
                     id="modalRecipe.title"
                     type="text"
                     v-model="modalRecipe.category" />
-                  <div class="mt-4">
-                    <span class="font-bold">Ingredients:</span>
+                  <div class="mt-4 w-full">
+                    <span class="font-bold w-full">Ingredients:</span>
                     <span
+                      class="w-full"
                       v-for="ingredient in modalRecipe.ingredients"
                       :key="ingredient.id">
-                      <div class="flex flex-row justify-start items-center">
+                      <div
+                        class="flex flex-row justify-start items-center w-full">
                         <input
-                          class="w-16 my-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="ingredient.amount"
+                          class="w-1/6 m-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           type="text"
                           v-model="ingredient.amount" />
-                        <select
-                          class="w-32 m-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="ingredient.units.name"
-                          v-model="ingredient.units.name">
-                          <option
-                            v-for="unit in unitsOfMeasure.sort((a, b) =>
-                              a.name > b.name ? 1 : -1
-                            )"
-                            :value="unit.name"
-                            :key="unit.id"
-                            :selected="unit.id === ingredient.units.id">
-                            {{ unit.name }}
-                          </option>
-                        </select>
                         <input
-                          class="my-2 block w-2/5 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          class="my-2 block w-3/4 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           id="ingredient.amount"
                           type="text"
                           v-model="ingredient.ingredient" />
-
                         <TrashIcon
                           class="text-red-500 w-8 h-8 mx-4 text-lg rounded-lg cursor-pointer"
                           @click="
@@ -391,31 +370,27 @@
                       </div>
                     </span>
                     <span
+                      class="w-full"
                       v-for="(ingredient, index) in insertIngredients"
                       :key="index">
-                      <div class="flex flex-row justify-start items-center">
+                      <div
+                        class="flex flex-row justify-start items-center w-full">
                         <input
-                          class="w-16 my-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="ingredient.amount"
+                          class="w-1/6 m-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           type="text"
                           v-model="ingredient.amount" />
-                        <select
-                          class="w-32 m-2 block appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="ingredient.units.name"
-                          v-model="ingredient.units.name">
-                          <option
-                            v-for="unit in unitsOfMeasure"
-                            :value="unit.name"
-                            :key="unit.id"
-                            :selected="unit.id === ingredient.unit_id">
-                            {{ unit.name }}
-                          </option>
-                        </select>
                         <input
-                          class="my-2 block w-2/5 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                          class="my-2 block w-3/4 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                           id="ingredient.amount"
                           type="text"
                           v-model="ingredient.ingredient" />
+                        <TrashIcon
+                          class="text-red-500 w-8 h-8 mx-4 text-lg rounded-lg cursor-pointer"
+                          @click="
+                            (deleteModal = true),
+                              (deleteType = 'ingredient'),
+                              (deleteIngredientId = ingredient.id)
+                          " />
                       </div>
                     </span>
                     <button
@@ -425,25 +400,53 @@
                     </button>
                   </div>
                   <div class="mt-4">
-                    <span class="font-bold">Instructions:</span>
+                    <span class="font-bold"
+                      >Instructions:
+                      <i class="font-normal text-sm text-gray-600"
+                        >(Leave blank if not needed...)</i
+                      ></span
+                    >
                     <span
                       class="flex flex-col justify-center items-start"
                       v-for="instruction in modalRecipe.instructions"
                       :key="instruction.id">
                       <div
-                        class="flex flex-row justify-start items-center w-full">
-                        <textarea
-                          class="h-36 appearance-none my-2 block w-4/5 rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="instruction.step"
-                          type="text"
-                          v-model="instruction.step" />
-                        <TrashIcon
-                          class="text-red-500 w-8 h-8 mx-4 text-lg rounded-lg cursor-pointer"
-                          @click="
-                            (deleteModal = true),
-                              (deleteType = 'instruction'),
-                              (deleteInstructionId = instruction.id)
-                          " />
+                        class="flex flex-col justify-start items-center w-full">
+                        <div
+                          class="flex flex-row justify-start items-center w-full">
+                          <label
+                            class="flex w-1/5 font-normal text-sm italic mt-1"
+                            for="modalRecipe.category">
+                            Heading:
+                          </label>
+                          <input
+                            class="appearance-none my-2 block w-2/3 rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            id="instruction.step"
+                            type="text"
+                            v-model="instruction.heading" />
+                        </div>
+
+                        <div
+                          class="flex flex-row justify-start items-center w-full">
+                          <label
+                            class="flex w-1/5 font-normal text-sm italic mt-1"
+                            for="modalRecipe.category">
+                            Description:
+                          </label>
+                          <textarea
+                            class="h-32 appearance-none my-2 block w-2/3 rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            id="instruction.step"
+                            type="text"
+                            v-model="instruction.description" />
+
+                          <TrashIcon
+                            class="text-red-500 w-8 h-8 mx-4 text-lg rounded-lg cursor-pointer"
+                            @click="
+                              (deleteModal = true),
+                                (deleteType = 'instruction'),
+                                (deleteInstructionId = instruction.id)
+                            " />
+                        </div>
                       </div>
                     </span>
                     <span
@@ -451,12 +454,34 @@
                       v-for="(instruction, index) in insertInstructions"
                       :key="index">
                       <div
-                        class="flex flex-row justify-start items-center w-full">
-                        <textarea
-                          class="my-2 block w-4/5 h-36 appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                          id="instruction.step"
-                          type="text"
-                          v-model="instruction.step" />
+                        class="flex flex-col justify-start items-center w-full">
+                        <div
+                          class="flex flex-row justify-start items-center w-full">
+                          <label
+                            class="flex w-1/5 font-normal text-sm italic mt-1"
+                            for="modalRecipe.category">
+                            Heading:
+                          </label>
+                          <input
+                            class="appearance-none my-2 block w-2/3 rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            id="instruction.step"
+                            type="text"
+                            v-model="instruction.heading" />
+                        </div>
+
+                        <div
+                          class="flex flex-row justify-start items-center w-full">
+                          <label
+                            class="flex w-1/5 font-normal text-sm italic mt-1"
+                            for="modalRecipe.category">
+                            Description:
+                          </label>
+                          <textarea
+                            class="h-32 appearance-none my-2 block w-2/3 rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            id="instruction.step"
+                            type="text"
+                            v-model="instruction.description" />
+                        </div>
                       </div>
                     </span>
                     <button
@@ -672,14 +697,14 @@ import {
 import { RouterLink } from 'vue-router';
 import { useRecipeStore } from '../stores/base';
 
+const props = defineProps(['session']);
+const { session } = toRefs(props);
+
 const recipeStore = useRecipeStore();
 
 const saveRecipe = (recipe) => {
   recipeStore.recipe = recipe;
 };
-
-const props = defineProps(['session']);
-const { session } = toRefs(props);
 
 const toggleName = ref('Private Recipes');
 const globalRecipe = ref('false');
@@ -706,11 +731,7 @@ const addIngredient = () => {
   insertIngredients.value.push({
     ingredient: '',
     amount: '',
-    unit_id: 1,
     recipe_id: modalRecipe.value.id,
-    units: {
-      name: 'unit',
-    },
   });
 };
 
@@ -718,7 +739,8 @@ const insertInstructions = ref([]);
 
 const addInstruction = () => {
   insertInstructions.value.push({
-    step: '',
+    description: '',
+    heading: '',
     recipe_id: modalRecipe.value.id,
   });
 };
@@ -748,7 +770,7 @@ async function getRecipes() {
     } = await supabase
       .from('recipes')
       .select(
-        'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount, unit_id, units(name, abbreviation, id)), instructions(id, step)'
+        'id, title, description, global, active, user_id, category, profiles(username), ingredients(id, ingredient, amount), instructions(id, heading, description)'
       )
       .order('title', { ascending: true });
     let { data: units } = await supabase.from('units').select('name, id');
@@ -783,22 +805,15 @@ async function updateRecipe() {
       category: modalRecipe.value.category,
       user_id: modalRecipe.value.user_id,
     };
-    const newIngredients = modalRecipe.value.ingredients;
-    for (let i = 0; i < newIngredients.length; i++) {
-      for (let j = 0; j < unitsOfMeasure.value.length; j++) {
-        if (newIngredients[i].units.name === unitsOfMeasure.value[j].name) {
-          newIngredients[i].unit_id = unitsOfMeasure.value[j].id;
-        }
-      }
-    }
+    const updatedIngredients = modalRecipe.value.ingredients;
 
     const formattedIngredients = {};
-    for (let i = 0; i < newIngredients.length; i++) {
+
+    for (let i = 0; i < updatedIngredients.length; i++) {
       formattedIngredients[i] = {
-        id: newIngredients[i].id,
-        ingredient: newIngredients[i].ingredient,
-        amount: newIngredients[i].amount,
-        unit_id: newIngredients[i].unit_id,
+        id: updatedIngredients[i].id,
+        ingredient: updatedIngredients[i].ingredient,
+        amount: updatedIngredients[i].amount,
         recipe_id: updatedRecipe.id,
       };
     }
@@ -807,7 +822,8 @@ async function updateRecipe() {
     for (let i = 0; i < modalRecipe.value.instructions.length; i++) {
       updatedInstructions[i] = {
         id: modalRecipe.value.instructions[i].id,
-        step: modalRecipe.value.instructions[i].step,
+        description: modalRecipe.value.instructions[i].description,
+        heading: modalRecipe.value.instructions[i].heading,
         recipe_id: updatedRecipe.id,
       };
     }
@@ -817,7 +833,6 @@ async function updateRecipe() {
       newInsertIngredients[i] = {
         ingredient: insertIngredients.value[i].ingredient,
         amount: insertIngredients.value[i].amount,
-        unit_id: insertIngredients.value[i].unit_id,
         recipe_id: insertIngredients.value[i].recipe_id,
         created_by: session.value.user.id,
       };
@@ -825,7 +840,8 @@ async function updateRecipe() {
     const newInsertInstructions = {};
     for (let i = 0; i < insertInstructions.value.length; i++) {
       newInsertInstructions[i] = {
-        step: insertInstructions.value[i].step,
+        description: insertInstructions.value[i].description,
+        heading: insertInstructions.value[i].heading,
         recipe_id: insertInstructions.value[i].recipe_id,
         created_by: session.value.user.id,
       };

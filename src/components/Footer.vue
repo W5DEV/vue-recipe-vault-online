@@ -1,7 +1,7 @@
 <template>
   <div
     class="bg-primary-muted text-primary-white w-full flex flex-row justify-center items-center">
-    <span class="text-sm py-2"
+    <span class="text-sm py-2 text-center"
       >{{ siteName }} &copy; {{ currentYear }} John Larson | All Rights
       Reserved.</span
     >

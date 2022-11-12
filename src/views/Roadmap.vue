@@ -12,26 +12,7 @@
         The following bugs have been observed and are currently being worked on.
       </p>
       <ul class="list-disc">
-        <li class="my-1">
-          When adding new ingredients, the unit of measure will always default
-          to "Unit" upon save.
-          <i class="text-primary-muted underline"
-            >Workaround: save the recipe, then go back and change the units of
-            measure after the initial save</i
-          >
-        </li>
-        <li class="my-1">
-          Sometimes ingredients don't save properly when initially saving recipe
-          details.
-        </li>
-        <li class="my-1">
-          There is no way to change the recipe description after the first time
-          you save it.
-        </li>
-        <li class="my-1">Home page footer doesn't line up on mobile</li>
-        <li class="my-1">
-          Feedback area prevents clicking on the bottom of the page
-        </li>
+        <li class="my-1"><i>Nothing to report! :)</i></li>
       </ul>
     </div>
     <div
@@ -42,12 +23,17 @@
         in the near future.
       </p>
       <ul class="list-disc">
-        <li class="my-1">Add Description Edit to Recipe Edit screen.</li>
         <li class="my-1">
-          Add ability to share recipes with other logged in users.
+          Add ability to share recipes with other logged in users, add shared
+          recipes section under user dashboard.
         </li>
         <li class="my-1">
-          Add ability to sort ingredients and instructions with a new field.
+          Add a "Shopping List" button that will generate a printable list of
+          ingredients for the selected recipe.
+        </li>
+        <li class="my-1">
+          Create a "Favorites" section that will allow users to save recipes to
+          a list and display under user dashboard.
         </li>
       </ul>
     </div>
