@@ -5,8 +5,8 @@
       type="button"
       :class="
         toggleName === 'Private Recipes'
-          ? 'text-primary-muted bg-primary-light relative inline-flex items-center rounded-l-md border border-gray-300 px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none cursor-auto'
-          : 'text-primary-muted hover:bg-primary-light relative inline-flex items-center rounded-l-md border border-gray-300 bg-primary-white px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none'
+          ? 'font-bold text-white bg-gradient-to-r from-teal-500 to-cyan-600  relative inline-flex items-center rounded-l-md border border-gray-300 px-4 py-2 text-sm focus:z-10 focus:outline-none cursor-auto'
+          : 'font-bold hover:bg-primary-light relative inline-flex items-center rounded-l-md border border-gray-300 bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text text-transparent px-4 py-2 text-sm focus:z-10 focus:outline-none'
       ">
       Private Recipes
     </button>
@@ -15,22 +15,22 @@
       type="button"
       :class="
         toggleName === 'Global Recipes'
-          ? 'text-primary-muted bg-primary-light relative inline-flex items-center rounded-r-md border border-gray-300 px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none cursor-auto'
-          : 'text-primary-muted hover:bg-primary-light relative inline-flex items-center rounded-r-md border border-gray-300 bg-primary-white px-4 py-2 text-sm font-medium focus:z-10 focus:outline-none'
+          ? 'text-white bg-gradient-to-r from-teal-500 to-cyan-600  relative inline-flex items-center rounded-r-md border border-gray-300 px-4 py-2 text-sm font-bold focus:z-10 focus:outline-none cursor-auto'
+          : ' hover:bg-primary-light relative inline-flex items-center rounded-r-md border border-gray-300 bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text text-transparent px-4 py-2 text-sm font-bold focus:z-10 focus:outline-none'
       ">
       Global Recipes
     </button>
   </span>
   <div class="w-3/4 flex flex-row justify-end items-center mt-4">
     <button
-      class="text-primary-white bg-primary hidden md:flex mx-4 py-2 text-lg px-4 rounded-lg"
+      class="text-white bg-gradient-to-r from-teal-500 to-cyan-600 font-bold mx-4 py-2 text-lg px-6 rounded-2xl hidden md:flex"
       type="button"
       @click="(newRecipeModal = true), newRecipeCreation()">
       Add New Recipe
     </button>
   </div>
   <div
-    class="bg-primary-light mt-8 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
+    class="bg-gradient-to-r from-teal-500 to-cyan-600 mt-8 w-full md:w-4/5 p-2 flex justify-center items-center rounded-3xl">
     <div class="bg-white rounded-2xl w-full">
       <!-- Begin User Recipe Render -->
       <div v-if="toggleName === 'Private Recipes'">
@@ -51,7 +51,7 @@
                   <div
                     class="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <p
-                      class="text-primary truncate text-sm font-medium mb-2 md:mb-0">
+                      class="my-2 text-base font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text text-transparent">
                       {{ recipe.title }}
                     </p>
                     <div class="md:ml-2 flex flex-shrink-0">
@@ -101,7 +101,7 @@
                   <div
                     class="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <p
-                      class="text-primary truncate text-sm font-medium mb-2 md:mb-0">
+                      class="my-2 text-base font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text text-transparent">
                       {{ recipe.title }}
                     </p>
                     <div class="md:ml-2 flex flex-shrink-0">

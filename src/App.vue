@@ -15,28 +15,6 @@ siteStore.name = siteName;
 <template>
   <Header v-if="!$route.meta.hideNavbar" />
   <RouterView v-slot="{ Component, route }">
-    <transition name="scale" mode="out-in">
-      <component :is="Component" :key="route.path" />
-    </transition>
+    <component :is="Component" :key="route.path" />
   </RouterView>
 </template>
-<!-- Style is necessary for page transition animation. -->
-<style>
-.scale-enter-active,
-.scale-leave-active {
-  transition: all 0.5s ease;
-}
-.slide-enter-to {
-  position: absolute;
-  right: 0;
-}
-.scale-enter-from,
-.scale-leave-to {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.slide-leave-from {
-  position: absolute;
-  left: 0;
-}
-</style>

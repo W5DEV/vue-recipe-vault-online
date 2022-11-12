@@ -1,13 +1,13 @@
 <template>
   <div
-    class="bg-primary-light flex min-h-full flex-col md:flex-row justify-center items-center p-4 md:p-8 w-full md:w-4/5 rounded-2xl mt-8">
+    class="bg-gradient-to-r from-teal-500 to-cyan-600 flex min-h-full flex-col md:flex-row justify-center items-center p-2 w-full md:w-4/5 rounded-3xl mt-8">
     <Avatar
       v-model:path="avatar_url"
       @upload="updateProfile"
       size="10"
-      class="w-full md:w-1/3 md:mr-4" />
+      class="w-full md:w-1/3 md:mr-2 bg-white rounded-2xl p-4" />
     <div class="sm:mx-auto w-full flex flex-col justify-center items-center">
-      <span class="my-4 text-2xl font-bold text-center w-full"
+      <span class="my-4 text-2xl font-bold text-center w-full text-white"
         >Profile Information</span
       >
       <div
@@ -49,13 +49,13 @@
           <div>
             <input
               type="submit"
-              class="bg-primary hover:bg-primary-muted my-2 flex w-full text-center justify-center rounded-md border border-transparent py-2 px-4 text-sm font-medium text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 cursor-pointer"
+              class="font-bold text-white bg-gradient-to-r from-teal-500 to-cyan-600 hover:italic my-2 flex w-full text-center justify-center rounded-md border border-transparent py-2 px-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 cursor-pointer"
               :value="loading ? 'Loading ...' : 'Update'"
               :disabled="loading" />
           </div>
           <div>
             <input
-              class="bg-primary-white hover:bg-primary-light text-primary border-primary-light my-2 flex w-full text-center justify-center rounded-md border py-2 px-4 text-sm font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 cursor-pointer"
+              class="bg-primary-white text-primary hover:italic my-2 flex w-full text-center justify-center rounded-md border py-2 px-4 text-sm font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 cursor-pointer"
               @click="signOut"
               :disabled="loading"
               value="Sign Out" />

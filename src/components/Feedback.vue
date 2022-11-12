@@ -9,8 +9,8 @@
       <div
         :class="
           !openFeedback
-            ? `h-full w-40 pt-2 rounded-t-md cursor-pointer shadow-gray-700 shadow bg-primary text-center`
-            : ` bg-primary w-40 py-2 rounded-t-md cursor-pointer shadow-gray-700 shadow text-center`
+            ? `h-full w-40 pt-2 rounded-t-md cursor-pointer shadow-gray-700 shadow text-white bg-gradient-to-r from-teal-500 to-cyan-600 text-center`
+            : ` text-white bg-gradient-to-r from-teal-500 to-cyan-600 w-40 py-2 rounded-t-md cursor-pointer shadow-gray-700 shadow text-center`
         "
         @click="openFeedback = !openFeedback">
         <span class="text-primary-white font-bold"> Leave Feedback </span>
@@ -19,11 +19,11 @@
         :class="
           !openFeedback
             ? `hidden`
-            : `bg-primary shadow w-3/5 max-h-96 flex flex-col justify-center items-center rounded-tl-xl shadow-gray-700 p-8 pb-0`
+            : `text-white bg-gradient-to-r from-teal-500 to-cyan-600 shadow w-3/5 max-h-96 flex flex-col justify-center items-center rounded-tl-3xl shadow-gray-700 p-2 pb-0`
         ">
         <div
           v-if="successContent"
-          class="bg-primary-white text-primary w-full p-8 rounded-t-lg text-center text-lg">
+          class="mt-4 text-2xl font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">
           Thanks for reaching out! We will review your submission shortly! Check
           out our
           <RouterLink
@@ -35,9 +35,10 @@
         </div>
         <div
           v-else
-          class="bg-primary-white text-primary rounded-t-lg p-8 w-full max-h-96 overflow-scroll">
-          <span class="text-center mb-4 w-full font-bold"
-            >Leave feedback for any issues or improvements!</span
+          class="bg-primary-white text-primary rounded-t-2xl p-8 w-full max-h-96 overflow-scroll">
+          <span
+            class="mt-4 text-xl font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">
+            Leave feedback for any issues or improvements!</span
           >
           <form ref="form" @submit.prevent="sendEmail">
             <div class="sm:col-span-3 mb-4">

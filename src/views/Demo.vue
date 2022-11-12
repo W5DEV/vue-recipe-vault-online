@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col justify-center items-center w-full h-full mt-14">
+  <div
+    class="bg-gray-900 pt-6 pb-32 flex flex-col justify-center items-center w-full h-full">
     <DemoRecipes />
   </div>
 </template>

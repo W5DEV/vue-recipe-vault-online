@@ -1,28 +1,47 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-4">
-    <span class="text-primary text-2xl font-bold mb-4">Demo Recipes</span>
-    <span
-      class="text-primary-dark md: text-lg font-normal mb-4 w-full md:w-4/5 px-12">
-      Below are a collection of recipes that our members have made global for
-      everyone to check out. Click a recipe to view the full recipe. Subscribers
-      have access to add, modify, delete and share recipes among other
-      subscribers as well!
-    </span>
-    <span
-      class="text-gray-700 text-base font-normal mb-4 w-full md:w-4/5 px-12 hidden md:flex italic">
-      Feel free to check out our roadmap by clicking the button below to see
-      existing bugs and planned features. If you would like to be a beta tester,
-      click the feedback button at the bottom of the page and request to join
-      the beta!
-    </span>
-    <RouterLink
-      to="/roadmap"
-      class="text-primary-white bg-primary font-bold mx-4 py-2 text-lg px-4 rounded-lg hidden md:flex">
-      <span>Roadmap</span>
-    </RouterLink>
+  <div
+    class="mt:-12 flex flex-col lg:flex-row justify-center items-start lg:mt-16 p-10 px-4 lg:px-8">
+    <div class="w-full max-w-md text-center lg:text-left mx-auto lg:pl-16">
+      <RouterLink
+        to="/roadmap"
+        class="inline-flex items-center rounded-full bg-black p-1 pr-2 text-white hover:text-gray-200 sm:text-base lg:text-sm xl:text-base">
+        <span
+          class="rounded-full bg-gradient-to-r from-teal-500 to-cyan-600 px-3 py-0.5 text-sm font-semibold leading-5 text-white"
+          >Coming soon</span
+        >
+        <span class="ml-4 text-sm">Check out our roadmap</span>
+        <ChevronRightIcon
+          class="ml-2 h-5 w-5 text-gray-500"
+          aria-hidden="true" />
+      </RouterLink>
+      <h1
+        class="mt-4 text-4xl font-bold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+        <span class="block">View some</span>
+        <span
+          class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
+          >demo recipes</span
+        >
+      </h1>
+    </div>
+    <div
+      class="w-full lg:w-3/5 lg:pr-16 flex flex-col justify-center items-center">
+      <p
+        class="text-base w-4/5 lg:w-full text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
+        Below are a collection of recipes that our members have made global for
+        everyone to check out. Click a recipe to view the full recipe.
+        Subscribers have access to add, modify, delete and share recipes among
+        other subscribers as well!
+      </p>
+      <p
+        class="text-gray-300 w-4/5 lg:w-full text-base font-normal mb-4 py-6 hidden md:flex italic">
+        Feel free to check out our roadmap to see existing bugs and planned
+        features. If you would like to be a beta tester, click the feedback
+        button at the bottom of the page and request to join the beta!
+      </p>
+    </div>
   </div>
   <div
-    class="bg-primary-light my-8 w-full md:w-4/5 p-4 md:p-8 flex justify-center items-center rounded-2xl">
+    class="text-white bg-gradient-to-r from-teal-500 to-cyan-600 my-8 w-full md:w-4/5 p-2 flex justify-center items-center rounded-3xl">
     <div class="bg-white rounded-2xl w-full">
       <!-- Begin Global Recipe Render -->
       <div>
@@ -37,7 +56,7 @@
                   <div
                     class="flex flex-col md:flex-row items-start md:items-center justify-between">
                     <p
-                      class="text-primary truncate text-sm font-medium mb-2 md:mb-0">
+                      class="my-2 text-base font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text text-transparent">
                       {{ recipe.title }}
                     </p>
                     <div class="md:ml-2 flex flex-shrink-0">
@@ -192,6 +211,7 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue';
+import { ChevronRightIcon } from '@heroicons/vue/20/solid';
 
 import { XMarkIcon, PrinterIcon } from '@heroicons/vue/24/outline';
 import { RouterLink } from 'vue-router';

@@ -68,7 +68,7 @@ watch(path, () => {
 
     <div :style="{ width: size + 'em' }">
       <label
-        class="button primary bg-primary text-primary-white hover:bg-primary-muted cursor-pointer block text-center w-auto px-4 my-2 font-bold italic rounded-lg py-2"
+        class="button primary font-bold text-white bg-gradient-to-r from-teal-500 to-cyan-600 cursor-pointer block text-center w-auto px-4 my-2 hover:italic rounded-lg py-2"
         for="single">
         {{ uploading ? 'Uploading ...' : 'Upload Photo' }}
       </label>
