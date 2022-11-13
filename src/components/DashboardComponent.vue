@@ -47,11 +47,15 @@
               </TransitionChild>
               <div class="h-0 flex-1 overflow-y-auto pt-5 pb-4">
                 <div class="flex flex-shrink-0 items-center px-4">
-                  <LogoWhite class="h-8 w-auto" />
-                  <span
-                    class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-                    Recipe Vault Online</span
-                  >
+                  <RouterLink
+                    to="/"
+                    class="flex flex-row items-end justify-center">
+                    <LogoWhite class="h-8 w-auto" />
+                    <span
+                      class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
+                      Recipe Vault Online</span
+                    >
+                  </RouterLink>
                 </div>
                 <nav class="mt-5 flex-1" aria-label="Sidebar">
                   <div class="space-y-1 px-2">
@@ -164,11 +168,13 @@
           class="flex min-h-0 flex-1 flex-col border-r border-gray-800 bg-gray-900">
           <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div class="flex flex-shrink-0 items-center px-4">
-              <LogoWhite class="h-8 w-auto" />
-              <span
-                class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-                Recipe Vault Online</span
-              >
+              <RouterLink to="/" class="flex flex-row items-end justify-center">
+                <LogoWhite class="h-8 w-auto" />
+                <span
+                  class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
+                  Recipe Vault Online</span
+                >
+              </RouterLink>
             </div>
             <nav class="mt-5 flex-1" aria-label="Sidebar">
               <div class="space-y-1 px-2">
@@ -273,11 +279,13 @@
         <div
           class="w-full flex items-center justify-between border-b border-gray-200 bg-gray-900 px-4 py-1.5">
           <div class="flex flex-row">
-            <LogoWhite class="h-8 w-auto" />
-            <span
-              class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-              Recipe Vault Online</span
-            >
+            <RouterLink to="/" class="flex flex-row items-end justify-center">
+              <LogoWhite class="h-8 w-auto" />
+              <span
+                class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
+                Recipe Vault Online</span
+              >
+            </RouterLink>
           </div>
           <div>
             <button
