@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen bg-white overflow-hidden w-full">
-    <!-- Some other sidebar? -->
+    <!-- Dynaimic Sidebar -->
     <TransitionRoot as="template" :show="sidebarOpen">
       <Dialog
         as="div"
@@ -26,7 +26,7 @@
             leave-from="translate-x-0"
             leave-to="-translate-x-full">
             <DialogPanel
-              class="relative flex w-full max-w-xs flex-1 flex-col bg-gray-100 focus:outline-none">
+              class="relative flex w-full max-w-xs flex-1 flex-col bg-gray-900 focus:outline-none">
               <TransitionChild
                 as="template"
                 enter="ease-in-out duration-300"
@@ -47,9 +47,9 @@
               </TransitionChild>
               <div class="h-0 flex-1 overflow-y-auto pt-5 pb-4">
                 <div class="flex flex-shrink-0 items-center px-4">
-                  <LogoColor class="h-8 w-auto" />
+                  <LogoWhite class="h-8 w-auto" />
                   <span
-                    class="font-fredericka text-primary hidden md:flex font-bold text-lg ml-2">
+                    class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
                     Recipe Vault Online</span
                   >
                 </div>
@@ -62,11 +62,11 @@
                       :href="item.href"
                       :class="[
                         dashboardType === item.name
-                          ? 'bg-gray-200 text-gray-900'
+                          ? 'bg-gray-700 text-gray-300'
                           : '',
                         item.disabled
-                          ? 'cursor-not-allowed text-gray-600 hover:text-gray-600 hover:bg-gray-100'
-                          : 'cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                          ? 'cursor-not-allowed text-gray-500 hover:text-gray-500 hover:bg-gray-900'
+                          : 'cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-900',
                         'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                       ]"
                       :aria-current="
@@ -76,10 +76,10 @@
                         :is="item.icon"
                         :class="[
                           dashboardType === item.name
-                            ? 'bg-gray-200 text-gray-900 group-hover:bg-gray-50'
+                            ? 'bg-gray-700 text-gray-900 group-hover:bg-gray-50'
                             : '',
                           item.disabled
-                            ? 'cursor-not-allowed text-gray-400 hover:text-gray-600 group-hover:bg-gray-100'
+                            ? 'cursor-not-allowed text-gray-400 hover:text-gray-500 group-hover:bg-gray-900'
                             : 'cursor-pointer text-gray-400 group-hover:bg-gray-50 group-hover:text-gray-600',
                           'mr-3 flex-shrink-0 h-6 w-6',
                         ]"
@@ -88,7 +88,7 @@
                     </a>
                   </div>
                   <hr
-                    class="my-5 border-t border-gray-200"
+                    class="my-5 border-t border-gray-800"
                     aria-hidden="true" />
                   <div class="flex-1 space-y-1 px-2">
                     <a
@@ -102,7 +102,7 @@
                           : '',
                         item.disabled
                           ? 'cursor-not-allowed text-gray-600 hover:text-gray-600 hover:bg-gray-100'
-                          : 'cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                          : 'cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-900',
                         'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                       ]">
                       <component
@@ -122,7 +122,7 @@
                   </div>
                 </nav>
               </div>
-              <div class="flex flex-shrink-0 border-t border-gray-200 p-4">
+              <div class="flex flex-shrink-0 border-t border-gray-800 p-4">
                 <a
                   href="#"
                   @click="dashboardType = 'Settings'"
@@ -137,11 +137,11 @@
                     </div>
                     <div class="ml-3">
                       <p
-                        class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                        class="text-sm font-medium text-gray-300 group-hover:text-gray-900">
                         {{ username }}
                       </p>
                       <p
-                        class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                        class="text-xs font-medium text-gray-400 group-hover:text-gray-700">
                         View profile
                       </p>
                     </div>
@@ -160,14 +160,13 @@
     <!-- Static sidebar for desktop -->
     <div class="hidden lg:flex lg:flex-shrink-0">
       <div class="flex w-64 flex-col">
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div
-          class="flex min-h-0 flex-1 flex-col border-r border-gray-200 bg-gray-100">
+          class="flex min-h-0 flex-1 flex-col border-r border-gray-800 bg-gray-900">
           <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
             <div class="flex flex-shrink-0 items-center px-4">
-              <LogoColor class="h-8 w-auto" />
+              <LogoWhite class="h-8 w-auto" />
               <span
-                class="font-fredericka text-primary hidden md:flex font-bold text-lg ml-2">
+                class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
                 Recipe Vault Online</span
               >
             </div>
@@ -180,11 +179,11 @@
                   :href="item.href"
                   :class="[
                     dashboardType === item.name
-                      ? 'bg-gray-200 text-gray-900'
+                      ? 'bg-gray-700 text-gray-300'
                       : '',
                     item.disabled
-                      ? 'cursor-not-allowed text-gray-600 hover:text-gray-600 hover:bg-gray-100'
-                      : 'cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      ? 'cursor-not-allowed text-gray-500 hover:text-gray-500 hover:bg-gray-900'
+                      : 'cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-900',
                     'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                   ]"
                   :aria-current="
@@ -194,10 +193,10 @@
                     :is="item.icon"
                     :class="[
                       dashboardType === item.name
-                        ? 'bg-gray-200 text-gray-900 group-hover:bg-gray-50'
+                        ? 'bg-gray-700 text-gray-900 group-hover:bg-gray-50'
                         : '',
                       item.disabled
-                        ? 'cursor-not-allowed text-gray-400 hover:text-gray-600 group-hover:bg-gray-100'
+                        ? 'cursor-not-allowed text-gray-400 hover:text-gray-500 group-hover:bg-gray-900'
                         : 'cursor-pointer text-gray-400 group-hover:bg-gray-50 group-hover:text-gray-600',
                       'mr-3 flex-shrink-0 h-6 w-6',
                     ]"
@@ -205,7 +204,7 @@
                   {{ item.name }}
                 </a>
               </div>
-              <hr class="my-5 border-t border-gray-200" aria-hidden="true" />
+              <hr class="my-5 border-t border-gray-800" aria-hidden="true" />
               <div class="flex-1 space-y-1 px-2">
                 <a
                   v-for="item in secondaryNavigation"
@@ -218,7 +217,7 @@
                       : '',
                     item.disabled
                       ? 'cursor-not-allowed text-gray-600 hover:text-gray-600 hover:bg-gray-100'
-                      : 'cursor-pointer text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      : 'cursor-pointer text-gray-300 hover:bg-gray-50 hover:text-gray-900',
                     'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
                   ]">
                   <component
@@ -238,7 +237,7 @@
               </div>
             </nav>
           </div>
-          <div class="z-20 flex flex-shrink-0 border-t border-gray-200 p-4">
+          <div class="z-20 flex flex-shrink-0 border-t border-gray-800 p-4">
             <a
               href="#"
               @click="dashboardType = 'Settings'"
@@ -253,11 +252,11 @@
                 </div>
                 <div class="ml-3">
                   <p
-                    class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                    class="text-sm font-medium text-gray-300 group-hover:text-gray-900">
                     {{ username }}
                   </p>
                   <p
-                    class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                    class="text-xs font-medium text-gray-400 group-hover:text-gray-700">
                     View profile
                   </p>
                 </div>
@@ -272,21 +271,21 @@
       <!-- Mobile Header -->
       <div class="lg:hidden">
         <div
-          class="w-full flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-1.5">
+          class="w-full flex items-center justify-between border-b border-gray-200 bg-gray-900 px-4 py-1.5">
           <div class="flex flex-row">
-            <LogoColor class="h-8 w-auto" />
+            <LogoWhite class="h-8 w-auto" />
             <span
-              class="font-fredericka text-primary hidden md:flex font-bold text-lg ml-2">
+              class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
               Recipe Vault Online</span
             >
           </div>
           <div>
             <button
               type="button"
-              class="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-pink-600"
+              class="-mr-3 inline-flex h-12 w-12 items-center justify-center rounded-md text-gray-300 hover:text-gray-500 focus:outline-none"
               @click="sidebarOpen = true">
               <span class="sr-only">Open sidebar</span>
-              <Bars3Icon class="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon class="h-7 w-7" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -463,7 +462,7 @@
           </article>
         </main>
         <aside
-          class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col">
+          class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col bg-neutral-100">
           <div class="w-full flex flex-row justify-end items-center mt-4 pr-2">
             <button
               class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
@@ -478,10 +477,10 @@
           <div class="px-6 pt-2 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Private Recipes</h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-gray-600 hidden">
               Search {{ userRecipes.length }} recipes <i>(Not working)</i>
             </p>
-            <form class="mt-6 flex space-x-4" action="#">
+            <form class="mt-6 space-x-4 hidden" action="#">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -509,13 +508,13 @@
           </div>
           <!-- Recipe list -->
           <nav
-            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-white"
+            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
               v-for="recipe in userRecipes"
               :key="recipe.id"
               role="list"
-              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
               <li>
                 <div
                   class="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500 hover:bg-gray-50">
@@ -562,7 +561,7 @@
         </aside>
         <aside
           v-if="recipeList === true"
-          class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col">
+          class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col bg-neutral-100">
           <div class="w-full flex flex-row justify-end items-center mt-4 pr-2">
             <button
               class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
@@ -576,10 +575,10 @@
           </div>
           <div class="px-6 pt-2 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Private Recipes</h2>
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-gray-600 hidden">
               Search {{ userRecipes.length }} recipes <i>(Not working)</i>
             </p>
-            <form class="mt-6 flex space-x-4" action="#">
+            <form class="mt-6 space-x-4 hidden" action="#">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -607,13 +606,13 @@
           </div>
           <!-- Recipe list -->
           <nav
-            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-white"
+            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
               v-for="recipe in userRecipes"
               :key="recipe.id"
               role="list"
-              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
               <li>
                 <div
                   class="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500 hover:bg-gray-50">
@@ -822,13 +821,13 @@
           </article>
         </main>
         <aside
-          class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col">
+          class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col bg-neutral-100">
           <div class="px-6 pt-6 pb-4">
-            <h2 class="text-lg font-medium text-gray-900">Global Reciipes</h2>
-            <p class="mt-1 text-sm text-gray-600">
+            <h2 class="text-lg font-medium text-gray-900">Global Recipes</h2>
+            <p class="mt-1 text-sm text-gray-600 hidden">
               Search {{ globalRecipes.length }} recipes <i>(Not working)</i>
             </p>
-            <form class="mt-6 flex space-x-4" action="#">
+            <form class="mt-6 hidden space-x-4" action="#">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -856,13 +855,13 @@
           </div>
           <!-- Recipe list -->
           <nav
-            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-white"
+            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in userRecipes"
+              v-for="recipe in globalRecipes"
               :key="recipe.id"
               role="list"
-              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
               <li>
                 <div
                   class="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500 hover:bg-gray-50">
@@ -905,13 +904,13 @@
         </aside>
         <aside
           v-if="recipeList === true"
-          class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col">
+          class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col bg-neutral-100">
           <div class="px-6 pt-6 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Global Recipes</h2>
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-gray-600 hidden">
               Search {{ userRecipes.length }} recipes <i>(Not working)</i>
             </p>
-            <form class="mt-6 flex space-x-4" action="#">
+            <form class="mt-6 hidden space-x-4" action="#">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -939,13 +938,13 @@
           </div>
           <!-- Recipe list -->
           <nav
-            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-white"
+            class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in userRecipes"
+              v-for="recipe in globalRecipes"
               :key="recipe.id"
               role="list"
-              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200">
+              class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
               <li>
                 <div
                   class="relative flex items-center space-x-3 px-6 py-5 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500 hover:bg-gray-50">
@@ -1033,17 +1032,20 @@
                 class="absolute top-0 right-0 pt-4 pr-4 sm:block text-gray-900">
                 <div
                   class="flex justify-end items-center flex-row text-gray-900">
+                  <span class="text-gray-900 font-medium italic">Global?</span>
                   <Switch
-                    v-model="recipeGlobal"
-                    :class="recipeGlobal ? 'bg-primary' : 'bg-gray-200'"
-                    class="relative inline-flex mx-4 h-6 w-11 items-center rounded-full">
+                    v-model="modalRecipe.global"
+                    :class="modalRecipe.global ? 'bg-cyan-500' : 'bg-gray-200'"
+                    class="relative inline-flex h-6 w-11 items-center rounded-full mr-16 ml-2">
                     <span class="sr-only">Make Global</span>
                     <span
-                      :class="recipeGlobal ? 'translate-x-6' : 'translate-x-1'"
+                      :class="
+                        modalRecipe.global ? 'translate-x-6' : 'translate-x-1'
+                      "
                       class="inline-block h-4 w-4 transform rounded-full bg-white transition" />
                   </Switch>
                   <button
-                    class="text-primary-white bg-primary mx-4 py-2 text-lg px-4 rounded-lg"
+                    class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-8 rounded-lg"
                     type="button"
                     @click="updateRecipe(), (update = false)">
                     Save
@@ -1147,7 +1149,7 @@
                       </div>
                     </span>
                     <button
-                      class="text-primary-white bg-primary mx-4 py-2 text-lg px-4 rounded-lg cursor-pointer"
+                      class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-4 rounded-lg cursor-pointer"
                       @click="addIngredient()">
                       Add Ingredient
                     </button>
@@ -1238,7 +1240,7 @@
                       </div>
                     </span>
                     <button
-                      class="text-primary-white bg-primary mx-4 py-2 text-lg px-4 rounded-lg cursor-pointer"
+                      class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-4 rounded-lg cursor-pointer"
                       @click="addInstruction()">
                       Add Instruction
                     </button>
@@ -1287,7 +1289,7 @@
               <div class="absolute top-0 right-0 pt-4 pr-4 sm:block">
                 <div class="flex justify-end items-center flex-row">
                   <button
-                    class="text-primary-white bg-primary mx-4 py-2 text-lg px-4 rounded-lg"
+                    class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-4 rounded-lg"
                     type="button"
                     @click="saveNewRecipe(), (newRecipeModal = false)">
                     Save
@@ -1448,7 +1450,7 @@
 </template>
 <script setup>
 import { onMounted, ref, toRefs, watch } from 'vue';
-import LogoColor from '../assets/cookbook-color.svg?component';
+import LogoWhite from '../assets/cookbook-white.svg?component';
 import {
   Dialog,
   DialogPanel,
@@ -1502,7 +1504,6 @@ const modalRecipe = ref({});
 const deleteModal = ref(false);
 const deleteType = ref('');
 const newRecipeModal = ref(false);
-const recipeGlobal = ref(false);
 const deleteIngredientId = ref('');
 const deleteInstructionId = ref('');
 const loadedRecipe = ref({});
@@ -1609,7 +1610,7 @@ async function updateRecipe() {
       id: modalRecipe.value.id,
       title: modalRecipe.value.title,
       active: modalRecipe.value.active,
-      global: recipeGlobal.value,
+      global: modalRecipe.value.global,
       description: modalRecipe.value.description,
       category: modalRecipe.value.category,
       user_id: modalRecipe.value.user_id,
