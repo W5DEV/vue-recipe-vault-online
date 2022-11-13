@@ -1454,6 +1454,7 @@ import LogoWhite from '../assets/cookbook-white.svg?component';
 import {
   Dialog,
   DialogPanel,
+  DialogTitle,
   TransitionChild,
   TransitionRoot,
   Switch,
