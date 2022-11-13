@@ -309,15 +309,6 @@
             class="flex items-start px-4 py-3 sm:px-6 lg:px-8 xl:hidden"
             aria-label="Breadcrumb">
             <a
-              v-if="recipeList === true"
-              @click="recipeList = false"
-              class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
-              <ChevronLeftIcon
-                class="bg-gray-400 rounded -ml-2 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
-                aria-hidden="true" />
-              <span>Recipes</span>
-            </a>
-            <a
               v-if="recipeList === false"
               @click="recipeList = true"
               class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
@@ -570,9 +561,18 @@
         <aside
           v-if="recipeList === true"
           class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col bg-neutral-100">
-          <div class="w-full flex flex-row justify-end items-center mt-4 pr-2">
+          <div class="w-full flex flex-row justify-between items-center pr-2">
+            <a
+              v-if="recipeList === true"
+              @click="recipeList = false"
+              class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
+              <ChevronLeftIcon
+                class="bg-gray-400 rounded ml-4 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
+                aria-hidden="true" />
+              <span>Recipes</span>
+            </a>
             <button
-              class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+              class="mt-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               type="button"
               @click="(newRecipeModal = true), newRecipeCreation()">
               <PlusIcon
@@ -676,15 +676,6 @@
           <nav
             class="flex items-start px-4 py-3 sm:px-6 lg:px-8 xl:hidden"
             aria-label="Breadcrumb">
-            <a
-              v-if="recipeList === true"
-              @click="recipeList = false"
-              class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
-              <ChevronLeftIcon
-                class="bg-gray-400 rounded -ml-2 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
-                aria-hidden="true" />
-              <span>Recipes</span>
-            </a>
             <a
               v-if="recipeList === false"
               @click="recipeList = true"
@@ -913,7 +904,16 @@
         <aside
           v-if="recipeList === true"
           class="w-96 flex-shrink-0 border-r border-gray-200 order-first flex xl:hidden flex-col bg-neutral-100">
-          <div class="px-6 pt-6 pb-4">
+          <div class="px-6 pt-3 pb-4">
+            <a
+              v-if="recipeList === true"
+              @click="recipeList = false"
+              class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
+              <ChevronLeftIcon
+                class="bg-gray-400 rounded -ml-2 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
+                aria-hidden="true" />
+              <span>Hide List</span>
+            </a>
             <h2 class="text-lg font-medium text-gray-900">Global Recipes</h2>
             <p class="mt-1 text-sm text-gray-600 hidden">
               Search {{ userRecipes.length }} recipes <i>(Not working)</i>

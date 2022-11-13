@@ -77,26 +77,26 @@
           </div>
           <div class="pt-5 pb-6">
             <div class="space-y-1 px-2">
-              <RouterLink
+              <a
                 v-for="item in navigation"
                 :key="item.name"
-                :to="item.href"
+                :href="item.href"
                 class="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
-                >{{ item.name }}</RouterLink
+                >{{ item.name }}</a
               >
             </div>
             <div class="mt-6 px-5">
-              <RouterLink
-                to="/sign-in"
+              <a
+                href="/sign-in"
                 class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
                 v-if="!session"
-                >Sign In</RouterLink
+                >Sign In</a
               >
-              <RouterLink
-                to="/dashboard"
+              <a
+                href="/dashboard"
                 class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 text-center font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700"
                 v-else
-                >Dashboard</RouterLink
+                >Dashboard</a
               >
             </div>
             <div class="mt-6 px-5">
