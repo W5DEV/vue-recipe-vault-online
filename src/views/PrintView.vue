@@ -36,7 +36,12 @@
           a.id > b.id ? 1 : -1
         )"
         :key="ingredient.id">
-        <p class="text-sm md:text-base mt-1 text-gray-500">
+        <p
+          :class="
+            ingredient.amount === (null || '')
+              ? `pl-1 font-semibold italic mt-8 text-gray-500 text-sm md:text-base`
+              : `text-sm md:text-base mt-1 text-gray-500`
+          ">
           {{ ingredient.amount }}
           {{ ingredient.ingredient }}
         </p>

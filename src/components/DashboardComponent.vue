@@ -352,14 +352,16 @@
                           aria-hidden="true" />
                         <span>Modify</span>
                       </button>
-                      <button
+                      <RouterLink
                         type="button"
+                        @click="saveRecipe(recipeStore.recipe)"
+                        to="/printview"
                         class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
                         <PrinterIcon
                           class="-ml-1 mr-2 h-5 w-5 text-gray-400"
                           aria-hidden="true" />
                         <span>Print</span>
-                      </button>
+                      </RouterLink>
                     </div>
                   </div>
                 </div>
@@ -709,14 +711,16 @@
                     </div>
                     <div
                       class="justify-stretch flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                      <button
+                      <RouterLink
                         type="button"
+                        @click="saveRecipe(recipeStore.recipe)"
+                        to="/printview"
                         class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
                         <PrinterIcon
                           class="-ml-1 mr-2 h-5 w-5 text-gray-400"
                           aria-hidden="true" />
                         <span>Print</span>
-                      </button>
+                      </RouterLink>
                     </div>
                   </div>
                 </div>
@@ -1477,6 +1481,7 @@ import { supabase } from '../supabase';
 import { useRecipeStore } from '../stores/base';
 import Announcements from './Announcements.vue';
 import DashboardProfile from './DashboardProfile.vue';
+import { RouterLink } from 'vue-router';
 
 const props = defineProps(['path', 'username', 'session']);
 const { path, username, session } = toRefs(props);
