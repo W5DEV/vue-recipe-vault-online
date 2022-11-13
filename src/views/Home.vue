@@ -101,7 +101,7 @@
             <div class="mt-12 -mb-10 sm:-mb-24 lg:-mb-80">
               <img
                 class="rounded-lg shadow-xl ring-1 ring-black ring-opacity-5"
-                src="https://tailwindui.com/img/component-images/green-project-app-screenshot.jpg"
+                src="../assets/rvo-dashboard.png"
                 alt="" />
             </div>
           </div>
