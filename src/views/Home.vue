@@ -36,8 +36,11 @@
                     place and access them anywhere.
                   </p>
                   <div class="mt-10 sm:mt-12">
-                    <form action="#" class="sm:mx-auto sm:max-w-xl lg:mx-0">
-                      <div class="sm:flex">
+                    <form
+                      ref="form"
+                      class="sm:mx-auto sm:max-w-xl lg:mx-0"
+                      @submit.prevent="sendEmail">
+                      <div class="sm:flex" v-if="!successContent">
                         <div class="min-w-0 flex-1">
                           <label for="email" class="sr-only"
                             >Email address</label
@@ -45,15 +48,25 @@
                           <input
                             id="email"
                             type="email"
+                            name="email"
                             placeholder="Enter your email"
                             class="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900" />
                         </div>
                         <div class="mt-3 sm:mt-0 sm:ml-3">
                           <button
                             type="submit"
+                            @click="validateEmail"
                             class="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900">
                             Notify me
                           </button>
+                        </div>
+                      </div>
+                      <div
+                        class="sm:flex justify-center items-center w-2/5"
+                        v-else>
+                        <div
+                          class="min-w-0 flex-1 w-2/3 rounded-full bg-gradient-to-r text-center from-teal-500 to-cyan-600 p-3 text-lg font-semibold leading-5 text-white">
+                          Thanks for signing up!
                         </div>
                       </div>
                       <p class="mt-3 text-sm text-gray-300 sm:mt-4">
@@ -354,6 +367,9 @@ import {
   ChevronRightIcon,
 } from '@heroicons/vue/20/solid';
 import { useSiteStore } from '../stores/base';
+import { ref } from 'vue';
+
+import emailjs from '@emailjs/browser';
 /* import PanelIllustraion from '../assets/panel-illustration.svg'; */
 
 const site = useSiteStore();
@@ -363,6 +379,36 @@ const siteName = site.name;
 window.document.title = siteName;
 
 const currentYear = new Date().getFullYear();
+
+const successContent = ref(false);
+
+function sendEmail() {
+  emailjs
+    .sendForm(
+      'service_gpr40ls',
+      'template_londrad',
+      this.$refs.form,
+      'mKBdNpWg2NKzi-rpo'
+    )
+    .then(
+      (result) => {
+        console.log('SUCCESS!', result.text);
+      },
+      (error) => {
+        console.log('FAILED...', error.text);
+      }
+    );
+}
+
+function validateEmail() {
+  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
+    this.msg['email'] = 'Please enter a valid email address';
+  } else {
+    this.msg['email'] = '';
+    sendEmail();
+    successContent.value = true;
+  }
+}
 
 const features = [
   {
