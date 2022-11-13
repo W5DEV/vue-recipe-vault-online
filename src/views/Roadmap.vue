@@ -1,13 +1,14 @@
 <template>
   <div
     class="flex flex-col w-full justify-start items-center mt-14 p-8 bg-gray-900">
-    <div>
+    <div
+      class="flex flex-col w-full h-full justify-start items-start bg-white rounded-3xl p-16 pb-8">
       <h1
-        class="my-4 text-4xl font-bold tracking-tight text-white sm:mt-5 sm:text-5xl lg:mt-6">
+        class="my-4 text-4xl font-bold tracking-tight text-gray-800 sm:mt-5 sm:text-5xl lg:mt-6">
         <span class="block">Roadmap</span>
       </h1>
       <p
-        class="text-base w-4/5 lg:w-full text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
+        class="text-base w-4/5 lg:w-full text-gray-800 sm:text-xl lg:text-lg xl:text-xl">
         This section was designed to give a general overview of any outstanding
         bugs and planned features.
       </p>
@@ -16,17 +17,21 @@
         <h1
           class="mt-4 text-3xl font-bold tracking-tight text-white sm:mt-5 sm:text-3xl lg:mt-6">
           <span
-            class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
+            class="block bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
             >Bugs</span
           >
         </h1>
         <p
-          class="text-base w-4/5 lg:w-full text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
+          class="text-base w-4/5 lg:w-full text-gray-700 sm:text-xl lg:text-lg xl:text-xl">
           The following bugs have been observed and are currently being worked
           on.
         </p>
-        <ul class="list-disc text-gray-300 lg:text-lg xl:text-xl py-4">
-          <li class="my-1 mx-12"><i>Nothing to report! :)</i></li>
+        <ul class="list-disc text-gray-700 lg:text-lg xl:text-xl py-4">
+          <li class="my-1 mx-12">
+            Sign-Out Button causes an error, but still works after dismissing
+            the error.
+          </li>
+          <!-- <li class="my-1 mx-12"><i>Nothing to report! :)</i></li> -->
         </ul>
       </div>
       <div
@@ -34,16 +39,16 @@
         <h1
           class="mt-4 text-3xl font-bold tracking-tight text-white sm:mt-5 sm:text-3xl lg:mt-6">
           <span
-            class="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
+            class="block bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
             >Upcoming Features</span
           >
         </h1>
         <p
-          class="text-base w-4/5 lg:w-full text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
+          class="text-base w-4/5 lg:w-full text-gray-700 sm:text-xl lg:text-lg xl:text-xl">
           This section outlines any upcoming features that should be implemented
           in the near future.
         </p>
-        <ul class="list-disc text-gray-300 lg:text-lg xl:text-xl py-4">
+        <ul class="list-disc text-gray-700 lg:text-lg xl:text-xl py-4">
           <li class="my-1 mx-12">
             Add ability to share recipes with other logged in users, add shared
             recipes section under user dashboard.
