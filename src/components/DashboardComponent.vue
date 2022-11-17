@@ -569,7 +569,7 @@
               <ChevronLeftIcon
                 class="bg-gray-400 rounded ml-4 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
                 aria-hidden="true" />
-              <span>Recipes</span>
+              <span>Hide List</span>
             </a>
             <button
               class="mt-2 inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
@@ -1692,6 +1692,8 @@ async function updateRecipe() {
     alert(error.message);
   } finally {
     loading.value = false;
+    insertIngredients.value = [];
+    insertInstructions.value = [];
   }
 
   update.value = false;
