@@ -56,7 +56,8 @@ The frontend will be utilizing Vue as the framework, built with Vite as the comp
 
 ## Ice-Box
 1. Create the unit-conversion for large/small batches (selectable via radio or toggle?). This should be some sort of +/- toggle that has a max of probably 12.
-2. Rework home page layout/content, possibly after consultingw with someone about copy.
+2. ~~Rework home page layout/content, possibly after consulting with someone about copy.~~
+3. Update copy of public pages to be more professional and less 'placeholder'.
 
 ### Beta-Test Considerations 
 1. User Groups for Cooks and Technical Testers?
