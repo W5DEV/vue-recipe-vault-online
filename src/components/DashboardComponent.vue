@@ -683,7 +683,7 @@
                         class="flex flex-row text-sm font-medium text-gray-900">
                         <p class="mr-4">{{ recipe.title }}</p>
                         <p
-                          class="bg-green-100 text-green-800 inline-flex rounded-full px-2 text-xs font-semibold leading-5 italic">
+                          class="bg-green-100 text-green-800 max-h-5 inline-flex rounded-full px-2 text-xs font-semibold leading-5 italic">
                           {{ recipe.category }}
                         </p>
                         <p
@@ -1143,7 +1143,11 @@
                   <button
                     class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-8 rounded-lg"
                     type="button"
-                    @click="updateRecipe(), (update = false)">
+                    @click="
+                      updateRecipe(),
+                        (update = false),
+                        (recipeStore.recipe = {})
+                    ">
                     Save
                   </button>
                   <TrashIcon
@@ -1154,7 +1158,9 @@
                   <button
                     type="button"
                     class="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none"
-                    @click="(update = false), (open = true)">
+                    @click="
+                      (update = false), (open = true), (recipeStore.recipe = {})
+                    ">
                     <span class="sr-only">Close</span>
                     <XMarkIcon class="h-6 w-6" />
                   </button>
@@ -1354,9 +1360,7 @@
     <Dialog
       as="div"
       class="relative z-30"
-      @close="
-        (newRecipeModal = false), (recipeStore.recipe = loadedRecipe.value[0])
-      ">
+      @close="(newRecipeModal = false), (recipeStore.recipe = {})">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -1387,7 +1391,11 @@
                   <button
                     class="text-primary-white bg-cyan-500 font-bold mx-4 py-2 text-lg px-4 rounded-lg"
                     type="button"
-                    @click="saveNewRecipe(), (newRecipeModal = false)">
+                    @click="
+                      saveNewRecipe(),
+                        (newRecipeModal = false),
+                        (recipeStore.recipe = {})
+                    ">
                     Save
                   </button>
                   <button
@@ -1819,7 +1827,7 @@ async function updateRecipe() {
   }
 
   update.value = false;
-  recipeStore.recipe = modalRecipe.value;
+  recipeStore.recipe = {};
   getRecipes();
 }
 async function removeIngredient(id) {
@@ -1835,6 +1843,7 @@ async function removeIngredient(id) {
 
   update.value = false;
   close.value = false;
+  recipeStore.recipe = {};
   getRecipes();
 }
 async function removeInstruction(id) {
@@ -1850,6 +1859,7 @@ async function removeInstruction(id) {
 
   update.value = false;
   close.value = false;
+  recipeStore.recipe = {};
   getRecipes();
 }
 async function deleteRecipe(id) {
@@ -1867,6 +1877,7 @@ async function deleteRecipe(id) {
 
   update.value = false;
   close.value = false;
+  recipeStore.recipe = {};
   getRecipes();
 }
 async function saveNewRecipe() {
@@ -1883,6 +1894,7 @@ async function saveNewRecipe() {
   newRecipeModal.value = false;
   update.value = false;
   close.value = false;
+  recipeStore.recipe = {};
   getRecipes();
 }
 
