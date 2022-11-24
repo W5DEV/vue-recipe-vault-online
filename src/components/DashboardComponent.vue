@@ -315,14 +315,14 @@
               <ChevronRightIcon
                 class="bg-gray-400 rounded -ml-2 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
                 aria-hidden="true" />
-              <span>Recipes</span>
+              <span>Recipe List</span>
             </a>
           </nav>
           <nav class="xl:flex items-start py-3 hidden" aria-label="Breadcrumb">
             <span class="h-6 w-6"></span>
           </nav>
 
-          <article>
+          <article v-if="recipeStore.recipe.title">
             <!-- Profile header -->
             <div>
               <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -459,6 +459,23 @@
               <<<<<<< Shared User Component Here >>>>>>
             </div> -->
           </article>
+          <article v-else>
+            <div
+              class="pt-48 h-full w-full flex justify-center items-center mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <div class="py-12 h-full w-full flex justify-center items-center">
+                <div
+                  class="text-center h-full w-full flex flex-col justify-center items-center">
+                  <h1
+                    class="text-4xl font-bold text-gray-300 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                    <span class="block"
+                      >Please Select a Recipe from the Recipe List</span
+                    >
+                  </h1>
+                  <ArrowLeftIcon class="w-16 h-16 text-gray-300 my-12" />
+                </div>
+              </div>
+            </div>
+          </article>
         </main>
         <aside
           class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col bg-neutral-100">
@@ -467,19 +484,20 @@
               class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
               type="button"
               @click="(newRecipeModal = true), newRecipeCreation()">
-              <PlusIcon
-                class="-ml-1 mr-2 h-5 w-5 text-gray-400"
-                aria-hidden="true" />
+              <PlusIcon class="-ml-1 mr-2 h-5 w-5 text-gray-400" />
               <span>Add New Recipe</span>
             </button>
           </div>
           <div class="px-6 pt-2 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Private Recipes</h2>
 
-            <p class="mt-1 text-sm text-gray-600 hidden">
-              Search {{ userRecipes.length }} recipes <i>(Not working)</i>
+            <p v-if="userSearchTerm === ''" class="mt-1 text-sm text-gray-600">
+              Search {{ userRecipes.length }} recipes
             </p>
-            <form class="mt-6 space-x-4 hidden" action="#">
+            <p v-else class="mt-1 text-sm text-gray-600">
+              Searching for '{{ userSearchTerm }}'
+            </p>
+            <span class="mt-6 space-x-4 flex flex-row">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -493,24 +511,34 @@
                     type="search"
                     name="search"
                     id="search"
-                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
-                    placeholder="Search" />
+                    v-model="inputValue"
+                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm text-gray-800"
+                    :placeholder="
+                      userSearchTerm ? userSearchTerm : 'Search...'
+                    " />
                 </div>
               </div>
-              <button
-                type="submit"
+              <span
+                @click="filterUserRecipes(inputValue), (inputValue = '')"
                 class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
-                <FunnelIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <XMarkIcon
+                  v-if="userSearchTerm"
+                  class="h-5 w-5 text-red-600 font-extrabold cursor-pointer"
+                  aria-hidden="true" />
+                <FunnelIcon
+                  v-else
+                  class="h-5 w-5 text-gray-400 cursor-pointer"
+                  aria-hidden="true" />
                 <span class="sr-only">Search</span>
-              </button>
-            </form>
+              </span>
+            </span>
           </div>
           <!-- Recipe list -->
           <nav
             class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in userRecipes"
+              v-for="recipe in filteredUserRecipes"
               :key="recipe.id"
               role="list"
               class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
@@ -583,10 +611,13 @@
           </div>
           <div class="px-6 pt-2 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Private Recipes</h2>
-            <p class="mt-1 text-sm text-gray-600 hidden">
-              Search {{ userRecipes.length }} recipes <i>(Not working)</i>
+            <p v-if="userSearchTerm === ''" class="mt-1 text-sm text-gray-600">
+              Search {{ userRecipes.length }} recipes
             </p>
-            <form class="mt-6 space-x-4 hidden" action="#">
+            <p v-else class="mt-1 text-sm text-gray-600">
+              Searching for '{{ userSearchTerm }}'
+            </p>
+            <span class="mt-6 space-x-4 flex flex-row">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -600,24 +631,34 @@
                     type="search"
                     name="search"
                     id="search"
-                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
-                    placeholder="Search" />
+                    v-model="inputValue"
+                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm text-gray-800"
+                    :placeholder="
+                      userSearchTerm ? userSearchTerm : 'Search...'
+                    " />
                 </div>
               </div>
-              <button
-                type="submit"
+              <span
+                @click="filterUserRecipes(inputValue), (inputValue = '')"
                 class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
-                <FunnelIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <XMarkIcon
+                  v-if="userSearchTerm"
+                  class="h-5 w-5 text-red-600 font-extrabold cursor-pointer"
+                  aria-hidden="true" />
+                <FunnelIcon
+                  v-else
+                  class="h-5 w-5 text-gray-400 cursor-pointer"
+                  aria-hidden="true" />
                 <span class="sr-only">Search</span>
-              </button>
-            </form>
+              </span>
+            </span>
           </div>
           <!-- Recipe list -->
           <nav
             class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in userRecipes"
+              v-for="recipe in filteredUserRecipes"
               :key="recipe.id"
               role="list"
               class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
@@ -683,14 +724,14 @@
               <ChevronRightIcon
                 class="bg-gray-400 rounded -ml-2 h-6 w-6 text-white font-bold hover:bg-gray-300 cursor-pointer"
                 aria-hidden="true" />
-              <span>Recipes</span>
+              <span>Recipe List</span>
             </a>
           </nav>
           <nav class="xl:flex items-start py-3 hidden" aria-label="Breadcrumb">
             <span class="h-6 w-6"></span>
           </nav>
 
-          <article>
+          <article v-if="recipeStore.recipe.title">
             <!-- Profile header -->
             <div>
               <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -818,15 +859,37 @@
               <<<<<<< Shared User Component Here >>>>>>
             </div> -->
           </article>
+          <article v-else>
+            <div
+              class="pt-48 h-full w-full flex justify-center items-center mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+              <div class="py-12 h-full w-full flex justify-center items-center">
+                <div
+                  class="text-center h-full w-full flex flex-col justify-center items-center">
+                  <h1
+                    class="text-4xl font-bold text-gray-300 sm:text-5xl sm:tracking-tight lg:text-6xl">
+                    <span class="block"
+                      >Please Select a Recipe from the Recipe List</span
+                    >
+                  </h1>
+                  <ArrowLeftIcon class="w-16 h-16 text-gray-300 my-12" />
+                </div>
+              </div>
+            </div>
+          </article>
         </main>
         <aside
           class="w-96 flex-shrink-0 border-r border-gray-200 order-first hidden xl:flex flex-col bg-neutral-100">
           <div class="px-6 pt-6 pb-4">
             <h2 class="text-lg font-medium text-gray-900">Global Recipes</h2>
-            <p class="mt-1 text-sm text-gray-600 hidden">
-              Search {{ globalRecipes.length }} recipes <i>(Not working)</i>
+            <p
+              v-if="globalSearchTerm === ''"
+              class="mt-1 text-sm text-gray-600">
+              Search {{ globalRecipes.length }} recipes
             </p>
-            <form class="mt-6 hidden space-x-4" action="#">
+            <p v-else class="mt-1 text-sm text-gray-600">
+              Searching for '{{ globalSearchTerm }}'
+            </p>
+            <span class="mt-6 space-x-4 flex flex-row">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -840,24 +903,34 @@
                     type="search"
                     name="search"
                     id="search"
-                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
-                    placeholder="Search" />
+                    v-model="inputValue"
+                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm text-gray-800"
+                    :placeholder="
+                      globalSearchTerm ? globalSearchTerm : 'Search...'
+                    " />
                 </div>
               </div>
-              <button
-                type="submit"
+              <span
+                @click="filterGlobalRecipes(inputValue), (inputValue = '')"
                 class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
-                <FunnelIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <XMarkIcon
+                  v-if="globalSearchTerm"
+                  class="h-5 w-5 text-red-600 font-extrabold cursor-pointer"
+                  aria-hidden="true" />
+                <FunnelIcon
+                  v-else
+                  class="h-5 w-5 text-gray-400 cursor-pointer"
+                  aria-hidden="true" />
                 <span class="sr-only">Search</span>
-              </button>
-            </form>
+              </span>
+            </span>
           </div>
           <!-- Recipe list -->
           <nav
             class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in globalRecipes"
+              v-for="recipe in filteredGlobalRecipes"
               :key="recipe.id"
               role="list"
               class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
@@ -915,10 +988,15 @@
               <span>Hide List</span>
             </a>
             <h2 class="text-lg font-medium text-gray-900">Global Recipes</h2>
-            <p class="mt-1 text-sm text-gray-600 hidden">
-              Search {{ userRecipes.length }} recipes <i>(Not working)</i>
+            <p
+              v-if="globalSearchTerm === ''"
+              class="mt-1 text-sm text-gray-600">
+              Search {{ globalRecipes.length }} recipes
             </p>
-            <form class="mt-6 hidden space-x-4" action="#">
+            <p v-else class="mt-1 text-sm text-gray-600">
+              Searching for '{{ globalSearchTerm }}'
+            </p>
+            <span class="mt-6 space-x-4 flex flex-row">
               <div class="min-w-0 flex-1">
                 <label for="search" class="sr-only">Search</label>
                 <div class="relative rounded-md shadow-sm">
@@ -932,24 +1010,34 @@
                     type="search"
                     name="search"
                     id="search"
-                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm"
-                    placeholder="Search" />
+                    v-model="inputValue"
+                    class="block w-full rounded-md border-gray-300 pl-10 focus:border-pink-500 focus:ring-pink-500 sm:text-sm text-gray-800"
+                    :placeholder="
+                      globalSearchTerm ? globalSearchTerm : 'Search...'
+                    " />
                 </div>
               </div>
-              <button
-                type="submit"
+              <span
+                @click="filterGlobalRecipes(inputValue), (inputValue = '')"
                 class="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">
-                <FunnelIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
+                <XMarkIcon
+                  v-if="globalSearchTerm"
+                  class="h-5 w-5 text-red-600 font-extrabold cursor-pointer"
+                  aria-hidden="true" />
+                <FunnelIcon
+                  v-else
+                  class="h-5 w-5 text-gray-400 cursor-pointer"
+                  aria-hidden="true" />
                 <span class="sr-only">Search</span>
-              </button>
-            </form>
+              </span>
+            </span>
           </div>
           <!-- Recipe list -->
           <nav
             class="min-h-0 flex-1 overflow-y-auto border-y border-gray-200 bg-neutral-100"
             aria-label="Directory">
             <ul
-              v-for="recipe in globalRecipes"
+              v-for="recipe in filteredGlobalRecipes"
               :key="recipe.id"
               role="list"
               class="relative z-0 divide-y divide-gray-200 border-b border-gray-200 bg-white">
@@ -1314,9 +1402,9 @@
               <div>
                 <div class="mt-10 text-start md:mt-5">
                   <label
-                    class="flex font-normal text-sm italic mt-1"
+                    class="flex font-normal text-sm italic mt-1 px-2"
                     for="modalRecipe.title">
-                    Title:
+                    Enter a Recipe Title:
                   </label>
                   <input
                     class="my-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -1324,9 +1412,9 @@
                     type="text"
                     v-model="newRecipe.title" />
                   <label
-                    class="flex font-normal text-sm italic mt-1"
+                    class="flex font-normal text-sm italic mt-1 px-2"
                     for="modalRecipe.category">
-                    Category:
+                    Enter a Recipe Category:
                   </label>
                   <input
                     class="my-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -1334,15 +1422,20 @@
                     type="text"
                     v-model="newRecipe.category" />
                   <label
-                    class="flex font-normal text-sm italic mt-1"
+                    class="flex font-normal text-sm italic mt-1 px-2"
                     for="newrecipe.description">
-                    Description:
+                    Enter a Recipe Description:
                   </label>
-                  <input
+                  <textarea
                     class="my-2 block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                     id="newRecipe.description"
-                    type="text"
                     v-model="newRecipe.description" />
+                  <span class="px-2 font-normal text-sm"
+                    ><i
+                      >Note: do not enter ingredients or instructions here. You
+                      can do this at a later time!</i
+                    ></span
+                  >
                 </div>
               </div>
             </DialogPanel>
@@ -1481,6 +1574,7 @@ import {
   ExclamationTriangleIcon,
   PlusIcon,
   PencilSquareIcon,
+  ArrowLeftIcon,
 } from '@heroicons/vue/24/outline';
 import {
   ChevronLeftIcon,
@@ -1516,6 +1610,33 @@ const newRecipeModal = ref(false);
 const deleteIngredientId = ref('');
 const deleteInstructionId = ref('');
 const loadedRecipe = ref({});
+const filteredUserRecipes = ref({});
+const filteredGlobalRecipes = ref({});
+const globalSearchTerm = ref('');
+const userSearchTerm = ref('');
+
+const filterUserRecipes = (searchTerm) => {
+  if (searchTerm === '' || searchTerm === null || searchTerm === undefined) {
+    filteredUserRecipes.value = userRecipes.value;
+    userSearchTerm.value = '';
+  } else {
+    filteredUserRecipes.value = userRecipes.value.filter((recipe) => {
+      userSearchTerm.value = searchTerm;
+      return recipe.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+};
+const filterGlobalRecipes = (searchTerm) => {
+  if (searchTerm === '' || searchTerm === null || searchTerm === undefined) {
+    filteredGlobalRecipes.value = userRecipes.value;
+    globalSearchTerm.value = '';
+  } else {
+    filteredGlobalRecipes.value = userRecipes.value.filter((recipe) => {
+      globalSearchTerm.value = searchTerm;
+      return recipe.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+  }
+};
 
 onMounted(() => {
   getRecipes();
@@ -1598,12 +1719,8 @@ async function getRecipes() {
       userRecipes.value = recipes.filter(
         (recipe) => recipe.user_id === user.id
       );
-      loadedRecipe.value = recipes.filter((recipe) => {
-        if (recipe.id === 7) {
-          return recipe;
-        }
-      });
-      recipeStore.recipe = loadedRecipe.value[0];
+      filteredUserRecipes.value = userRecipes.value;
+      filteredGlobalRecipes.value = globalRecipes.value;
     }
   } catch (error) {
     alert(error.message);
@@ -1614,7 +1731,6 @@ async function getRecipes() {
 async function updateRecipe() {
   try {
     loading.value = true;
-    console.log('modalRecipe: ', modalRecipe.value);
     const updatedRecipe = {
       id: modalRecipe.value.id,
       title: modalRecipe.value.title,
@@ -1624,7 +1740,6 @@ async function updateRecipe() {
       category: modalRecipe.value.category,
       user_id: modalRecipe.value.user_id,
     };
-    console.log('updatedRecipe: ', updatedRecipe);
     const updatedIngredients = modalRecipe.value.ingredients;
 
     const formattedIngredients = {};
@@ -1650,21 +1765,28 @@ async function updateRecipe() {
 
     const newInsertIngredients = {};
     for (let i = 0; i < insertIngredients.value.length; i++) {
-      newInsertIngredients[i] = {
-        ingredient: insertIngredients.value[i].ingredient,
-        amount: insertIngredients.value[i].amount,
-        recipe_id: insertIngredients.value[i].recipe_id,
-        created_by: session.value.user.id,
-      };
+      if (insertIngredients.value[i].ingredient !== '') {
+        newInsertIngredients[i] = {
+          ingredient: insertIngredients.value[i].ingredient,
+          amount: insertIngredients.value[i].amount,
+          recipe_id: insertIngredients.value[i].recipe_id,
+          created_by: session.value.user.id,
+        };
+      }
     }
     const newInsertInstructions = {};
     for (let i = 0; i < insertInstructions.value.length; i++) {
-      newInsertInstructions[i] = {
-        description: insertInstructions.value[i].description,
-        heading: insertInstructions.value[i].heading,
-        recipe_id: insertInstructions.value[i].recipe_id,
-        created_by: session.value.user.id,
-      };
+      if (
+        insertInstructions.value[i].description !== '' &&
+        insertInstructions.value[i].heading !== ''
+      ) {
+        newInsertInstructions[i] = {
+          description: insertInstructions.value[i].description,
+          heading: insertInstructions.value[i].heading,
+          recipe_id: insertInstructions.value[i].recipe_id,
+          created_by: session.value.user.id,
+        };
+      }
     }
 
     let { error } = await supabase.from('recipes').upsert(updatedRecipe);
@@ -1697,6 +1819,7 @@ async function updateRecipe() {
   }
 
   update.value = false;
+  recipeStore.recipe = modalRecipe.value;
   getRecipes();
 }
 async function removeIngredient(id) {
@@ -1781,4 +1904,13 @@ const secondaryNavigation = [
 const tabs = [{ name: 'Ingredients' }, { name: 'Instructions' }];
 
 const sidebarOpen = ref(false);
+</script>
+<script>
+export default {
+  data: function () {
+    return {
+      inputValue: '',
+    };
+  },
+};
 </script>
