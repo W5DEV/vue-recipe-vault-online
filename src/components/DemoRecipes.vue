@@ -154,7 +154,9 @@
                     Description: {{ modalRecipe.description }}
                   </p>
                   <div class="mt-8">
-                    <span class="font-bold text-2xl">Ingredients:</span>
+                    <span class="font-bold text-2xl text-gray-700"
+                      >Ingredients:</span
+                    >
                     <span
                       v-for="ingredient in modalRecipe.ingredients.sort(
                         (a, b) => (a.id > b.id ? 1 : -1)
@@ -172,7 +174,9 @@
                     </span>
                   </div>
                   <div class="my-8">
-                    <span class="font-bold text-2xl">Instructions:</span>
+                    <span class="font-bold text-2xl text-gray-700"
+                      >Instructions:</span
+                    >
                     <span
                       class="flex flex-col justify-center items-start"
                       v-for="instruction in modalRecipe.instructions.sort(
