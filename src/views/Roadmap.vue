@@ -13,12 +13,39 @@
         bugs and planned features.
       </p>
       <div
+        class="text-primary-dark text-base flex flex-col w-full justify-center items-start mb-8 px-1 md:px-4">
+        <h1
+          class="mt-4 text-3xl font-bold tracking-tight text-white sm:mt-5 sm:text-3xl lg:mt-6">
+          <span
+            class="block bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
+            >New Features/Fixes</span
+          >
+        </h1>
+        <p
+          class="text-base w-full md:w-4/5 lg:w-full text-gray-700 sm:text-xl lg:text-lg xl:text-xl">
+          This section provides a summary of new features added since the
+          previous update
+        </p>
+        <ul class="list-disc text-gray-700 lg:text-lg xl:text-xl py-4">
+          <li class="my-1 mx-4 md:mx-12">
+            Added search feature to filter recipes based on titles
+          </li>
+          <li class="my-1 mx-4 md:mx-12">
+            Fixed issue when modifying recipes, ingredients and instructions
+            where the displayed recipe does not always show up properly
+          </li>
+          <li class="my-1 mx-4 md:mx-12">
+            Added a placeholder panel when saving or deleting recipes
+          </li>
+        </ul>
+      </div>
+      <div
         class="text-primary-dark flex flex-col w-full justify-center items-start text-base mb-8 px-1 md:px-4">
         <h1
           class="mt-4 text-3xl font-bold tracking-tight text-white sm:mt-5 sm:text-3xl lg:mt-6">
           <span
             class="block bg-gradient-to-r from-teal-300 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5"
-            >Bugs</span
+            >Oustanding Bugs</span
           >
         </h1>
         <p
@@ -27,6 +54,10 @@
           on.
         </p>
         <ul class="list-disc text-gray-700 lg:text-lg xl:text-xl py-4">
+          <li class="my-1 mx-4 md:mx-12">
+            When typing in a category, any double-words will cause the text to
+            spill out of the bubble.
+          </li>
           <li class="my-1 mx-4 md:mx-12">
             Sign-Out Button causes an error, but still works after dismissing
             the error.
