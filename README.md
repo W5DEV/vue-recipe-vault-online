@@ -46,12 +46,13 @@ The frontend will be utilizing Vue as the framework, built with Vite as the comp
 17. ~~Invite beta-testing users to be the first to test this initial roll out. I am shooting for 15 initial trusted users, made up of both cooks and technical colleagues.~~
 
 ## To-Do (Phase 2)
-1. Create a tab under account that explains the roadmap for features that are scheduled to be implemented. (Push to demo page as well?)
-2. Create more global recipes and rework the demo page to be more useful and less of a placeholder.
-3. Create a 'share' button that will allow a user to enter an email (or username?) and add a flag to the recipe that includes the identifier so the other user can view the recipe.
-4. Create a shared recipes tab under account that shows all recipes that contain said flag.
-5. Create a 'favorites' tab under account that shows all recipes that have been favorited by the user.
-6. Create a 'shopping list' tab under account that shows all ingredients from all recipes that have been added to the shopping list by the user.
+1. ~~Create a tab under account that explains the roadmap for features that are scheduled to be implemented. (Push to demo page as well?)~~
+2. ~~Create more global recipes and rework the demo page to be more useful and less of a placeholder.~~
+3. ~~Re-enable search/filter function on recipe dashboard~~
+4. Create a 'share' button that will allow a user to enter an email (or username?) and add a flag to the recipe that includes the identifier so the other user can view the recipe.
+5. Create a shared recipes tab under account that shows all recipes that contain said flag.
+6. Create a 'favorites' tab under account that shows all recipes that have been favorited by the user.
+7. Create a 'shopping list' tab under account that shows all ingredients from all recipes that have been added to the shopping list by the user.
 
 ## Ice-Box
 1. Create the unit-conversion for large/small batches (selectable via radio or toggle?). This should be some sort of +/- toggle that has a max of probably 12.
