@@ -1784,10 +1784,7 @@ async function updateRecipe() {
     }
     const newInsertInstructions = {};
     for (let i = 0; i < insertInstructions.value.length; i++) {
-      if (
-        insertInstructions.value[i].description !== '' &&
-        insertInstructions.value[i].heading !== ''
-      ) {
+      if (insertInstructions.value[i].description !== '') {
         newInsertInstructions[i] = {
           description: insertInstructions.value[i].description,
           heading: insertInstructions.value[i].heading,
