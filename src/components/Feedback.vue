@@ -21,7 +21,8 @@
             ? `hidden`
             : `text-white bg-gradient-to-r from-teal-500 to-cyan-600 shadow w-3/5 max-h-96 flex flex-col justify-center items-center rounded-tl-3xl shadow-gray-700 p-2 pb-0`
         ">
-        <div>
+        <div
+          class="text-primary-white flex flex-col justify-center items-center gap-4 font-bold">
           <span>This module is currently broken! :&lpar;</span>
           <span>Reach out to John to report issues!</span>
         </div>
