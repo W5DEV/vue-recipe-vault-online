@@ -21,7 +21,11 @@
             ? `hidden`
             : `text-white bg-gradient-to-r from-teal-500 to-cyan-600 shadow w-3/5 max-h-96 flex flex-col justify-center items-center rounded-tl-3xl shadow-gray-700 p-2 pb-0`
         ">
-        <div
+        <div>
+          <span>This module is currently broken! :&lpar;</span>
+          <span>Reach out to John to report issues!</span>
+        </div>
+        <!-- <div
           v-if="successContent"
           class="mt-4 text-2xl font-bold tracking-tight block bg-gradient-to-r from-teal-500 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">
           Thanks for reaching out! We will review your submission shortly! Check
@@ -155,7 +159,7 @@
               Submit
             </button>
           </form>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -165,11 +169,11 @@
 import { ref } from 'vue';
 
 const openFeedback = ref(false);
-const successContent = ref(false);
+/* const successContent = ref(false); */
 </script>
 <script>
 import emailjs from '@emailjs/browser';
-import { RouterLink } from 'vue-router';
+/* import { RouterLink } from 'vue-router'; */
 
 export default {
   methods: {
@@ -191,6 +195,6 @@ export default {
         );
     },
   },
-  components: { RouterLink },
+  /* components: { RouterLink }, */
 };
 </script>
