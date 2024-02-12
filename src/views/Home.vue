@@ -130,7 +130,7 @@
               Your recipes. Accessible <i>everywhere.</i>
             </p>
             <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
-              Any device. Any platform. Anywhere. Access Recipe Vault Online
+              Any device. Any platform. Anywhere. Access the Online Cookbook
               from your favorite device and reference your recipes easily at any
               time.*
             </p>
@@ -204,8 +204,8 @@
                         d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                     </svg>
                     <p class="mt-6 text-2xl font-medium text-white">
-                      Recipe Vault Online is my best friend and personal sous
-                      chef in the kitchen. I can easily access my recipes and
+                      Online Cookbook is my best friend and personal sous chef
+                      in the kitchen. I can easily access my recipes and
                       reference them without worrying about ruining them
                       forever!
                     </p>
@@ -234,7 +234,7 @@
               </p>
               <p class="mx-auto mt-5 max-w-prose text-xl text-gray-500">
                 Discover new recipes and find resources to help you make the
-                most of Recipe Vault Online and your kitchen.
+                most of Online Cookbook and your kitchen.
               </p>
             </div>
             <div
@@ -316,7 +316,7 @@
                 We’re here to help
               </p>
               <p class="mt-3 text-lg text-gray-300">
-                Recipe Vault Online was developed by cullinary enthusiasts for
+                Online Cookbook was developed by cullinary enthusiasts for
                 cullinary enthusiasts. All feedback is highly valued and
                 priority is placed on making sure your experience is free from
                 bugs and errors.
@@ -343,8 +343,7 @@
           class="mx-auto max-w-md px-4 pt-12 sm:max-w-7xl sm:px-6 lg:px-8 lg:pt-16">
           <div class="mt-12 border-t border-gray-200 py-8">
             <p class="text-base text-gray-400 xl:text-center">
-              &copy; {{ currentYear }} Recipe Vault Online | All rights
-              reserved.
+              &copy; {{ currentYear }} Online Cookbook | All rights reserved.
             </p>
           </div>
         </div>

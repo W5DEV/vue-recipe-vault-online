@@ -53,7 +53,7 @@
                     <LogoWhite class="h-8 w-auto" />
                     <span
                       class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-                      Recipe Vault Online</span
+                      Online Cookbook</span
                     >
                   </RouterLink>
                 </div>
@@ -172,7 +172,7 @@
                 <LogoWhite class="h-8 w-auto" />
                 <span
                   class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-                  Recipe Vault Online</span
+                  Online Cookbook</span
                 >
               </RouterLink>
             </div>
@@ -283,7 +283,7 @@
               <LogoWhite class="h-8 w-auto" />
               <span
                 class="font-fredericka text-white hidden md:flex font-bold text-lg ml-2">
-                Recipe Vault Online</span
+                Online Cookbook</span
               >
             </RouterLink>
           </div>

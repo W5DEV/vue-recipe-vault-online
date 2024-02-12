@@ -9,10 +9,7 @@ import Feedback from './components/Feedback.vue';
 const siteStore = useSiteStore();
 
 const session = ref();
-const siteName =
-  document.location.hostname === 'savegrandmas.recipes'
-    ? 'Save Grandmas Recipes'
-    : 'Recipe Vault Online';
+const siteName = 'Online Cookbook';
 
 siteStore.name = siteName;
 
