@@ -1,3 +1,5 @@
+This project has been redesigned and implemented using Next.js and a RESTful API using Go. The new project can be found here: [W5DEV/next-recipes](https://github.com/W5DEV/next-recipes).
+
 # Online Cookbook
 
 Online Cookbook provides a secure and easy-to-use application for you to enter and retrieve your favorite and most precious recipes. Best of all? You will have access to these recipes *everywhere*. No more worrying about literal spilled milk ruining that generations-old buscuit recipe!
