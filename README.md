@@ -1,4 +1,4 @@
-This project has been redesigned and implemented using Next.js and a RESTful API using Go. The new project can be found here: [W5DEV/next-recipes](https://github.com/W5DEV/next-recipes).
+# **This project has been redesigned and implemented using Next.js and a RESTful API using Go. The new project can be found here: [W5DEV/next-recipes](https://github.com/W5DEV/next-recipes).**
 
 # Online Cookbook
 
