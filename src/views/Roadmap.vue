@@ -5,6 +5,15 @@
       class="flex flex-col w-full h-full justify-start items-start bg-white rounded-t-md md:rounded-3xl p-4 md:p-16 pb-8">
       <h1
         class="my-4 text-4xl font-bold tracking-tight text-gray-800 sm:mt-5 sm:text-5xl lg:mt-6">
+        <span class="block">This Project has Moved!</span>
+      </h1>
+      <p
+        class="text-base w-full md:w-4/5 lg:w-full text-gray-800 sm:text-xl lg:text-lg xl:text-xl">
+        This project has been moved to the new and improved "version 2", which you can find at 
+        <a href="https://cookbook.jjlarson.com">cookbook.jjlarson.com</a>!
+      </p>
+      <h1
+        class="my-4 text-4xl font-bold tracking-tight text-gray-800 sm:mt-5 sm:text-5xl lg:mt-6">
         <span class="block">Roadmap</span>
       </h1>
       <p
